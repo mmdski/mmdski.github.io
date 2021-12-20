@@ -1871,6 +1871,9 @@ var ___wasm_call_ctors = Module["___wasm_call_ctors"] = createExportWrapper("__w
 var _chl_sin = Module["_chl_sin"] = createExportWrapper("chl_sin");
 
 /** @type {function(...*):?} */
+var _chl_pi = Module["_chl_pi"] = createExportWrapper("chl_pi");
+
+/** @type {function(...*):?} */
 var ___errno_location = Module["___errno_location"] = createExportWrapper("__errno_location");
 
 /** @type {function(...*):?} */
