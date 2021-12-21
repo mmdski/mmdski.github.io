@@ -1,6 +1,8 @@
-#include <chl.h>
 #include <emscripten.h>
 #include <math.h>
+#include <stdio.h>
+
+#define REAL float
 
 EMSCRIPTEN_KEEPALIVE
 REAL
@@ -10,9 +12,11 @@ chl_sin (REAL x)
 }
 
 EMSCRIPTEN_KEEPALIVE
-REAL *
-chl_pi ()
+void
+chl_sin_array (int size, REAL *t, REAL *x)
 {
-  REAL pi = 3.14;
-  return &pi;
+  for (int i = 0; i < size; i++)
+    {
+      x[i] = sinf (t[i]);
+    }
 }
