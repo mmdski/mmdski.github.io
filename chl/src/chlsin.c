@@ -1,8 +1,7 @@
+#include "chl.h"
 #include <emscripten.h>
 #include <math.h>
 #include <stdio.h>
-
-#define REAL float
 
 EMSCRIPTEN_KEEPALIVE
 REAL

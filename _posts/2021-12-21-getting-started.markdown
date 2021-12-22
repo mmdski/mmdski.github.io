@@ -1,15 +1,24 @@
 ---
 layout: post
-title:  "Getting started with web assembly"
+title:  "Getting started with WebAssembly"
 date:   2021-12-21 18:55:29 -0600
 categories: [wasm, JavaScript]
 ---
 
-The values in the plot below are computed with a sine function called from JavaScript and written in C code. The C code
-was compiled to web assembly using [Emscripten](https://emscripten.org/). The plot itself is created in
-[Plotly](https://plotly.com/javascript/). Web assembly and JavaScript are very new to me and I still have a lot of
-learning to do. I'm planning on learning more on how to make this plot a bit more interactive, and I'd like to add an
-animation feature.
+I've decided to learn how to write static web applications. I don't think there is a better way to deliver applications
+to people than through the web. Obviously I'm pretty late on coming to this conclusion. Instead of making someone
+download and install a runtime or development environment, you can give someone a URL and they can seamlessly download
+and run your code, assuming the application is in working order.
+
+Since I would like to eventually write computationally intense applications, I want to learn how to use
+[WebAssembly (Wasm)](https://webassembly.org/) right away. I don't think a lot of the smaller applications I initially
+write will benefit from using Wasm (actually they'll probably suffer from it) but I would like to get the hang of it
+before I really need to use it. I'm also learning JavaScript, which I loath at this point, so coding in C will be a much
+more pleasant experience for me.
+
+The values in the plot below are computed with a standard library sine function in C code called from JavaScript. The C
+code was compiled to Wasm using [Emscripten](https://emscripten.org/). The plot itself is created in
+[Plotly](https://plotly.com/javascript/).
 
 <div id="tester" style="width:600px;height:500px;"></div>
 
