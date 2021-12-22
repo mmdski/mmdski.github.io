@@ -2,7 +2,7 @@
 layout: post
 title:  "Getting started with WebAssembly"
 date:   2021-12-21 18:55:29 -0600
-tags: [wasm, JavaScript]
+tags: [Wasm, JavaScript]
 ---
 
 I've decided to learn how to write static web applications. I don't think there is a better way to deliver applications
