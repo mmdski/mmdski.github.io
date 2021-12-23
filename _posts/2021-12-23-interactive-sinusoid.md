@@ -6,6 +6,7 @@ tags:
 - JavaScript
 date: 2021-12-23 13:38 -0600
 ---
+<script type="text/javascript" src="https://cdn.plot.ly/plotly-2.6.3.min.js"></script>
 <style>
 #ampHandle {
   width: 5em;
@@ -119,10 +120,10 @@ Phase ($\phi$)
     let TESTER = document.getElementById('tester');
     let data = [{x: t, y: x}];
     let layout = {width: 600, height: 500,
-      margin: {b: 20, l: 10, r: 10, t: 10},
+      margin: {b: 20, l: 50, r: 10, t: 10},
       dragmode: false,
-      xaxis: {range: [0, 1]},
-      yaxis: {range: [-2.1, 2.1]}};
+      xaxis: {range: [0, 1], title: '$t$'},
+      yaxis: {range: [-2.1, 2.1], title: '$f(t)$'}};
     Plotly.newPlot(TESTER, data, layout);
 
     function updatePlot() {
@@ -186,6 +187,4 @@ least.
 The computation of the sine function is done in Wasm compiled with Emscripten, the plotting is done in Plotly, and the
 slider bars come from [JQuery UI](https://jqueryui.com/). I plan on working more with these libraries in the future, but
 I'd like to add a library like [Bootstrap](https://getbootstrap.com/) to help with layout.
-
-<script type="text/javascript" src="https://cdn.plot.ly/plotly-2.6.3.min.js"></script>
 <script type="text/javascript" src="{{ base.url | prepend: site.url }}/assets/js/chlsin.js"></script>
