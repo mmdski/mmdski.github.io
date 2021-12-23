@@ -23,10 +23,10 @@ chl_sin_array (int size, REAL *t, REAL *x)
 
 EMSCRIPTEN_KEEPALIVE
 void
-chl_sin_func (int size, REAL *t, REAL *f, REAL freq, REAL phase)
+chl_sin_func (int size, REAL *t, REAL *f, REAL amp, REAL freq, REAL phase)
 {
   for (int i = 0; i < size; i++)
     {
-      f[i] = sinf (freq * t[i] - phase);
+      f[i] = amp*sinf (freq * t[i] - phase);
     }
 }
