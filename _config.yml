@@ -60,9 +60,10 @@ plugins:
 #   - vendor/gems/
 #   - vendor/ruby/
 exclude:
+  - build.wasm32
   - chl/
   - meson.build
   - README.md
   - requirements.txt
+  - script/
   - wasm32.ini
-  - build.wasm32
