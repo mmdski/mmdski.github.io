@@ -1,5 +1,5 @@
 # emscripten build
-if meson.get_compiler('c').get_id() == 'emscripten'
+if target_machine.cpu() == 'wasm32'
     chlsin_name = 'chlsin'
     chlsin_sources = ['chlsin.c']
 
