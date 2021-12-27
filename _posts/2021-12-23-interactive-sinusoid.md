@@ -8,25 +8,10 @@ date: 2021-12-23 13:38 -0600
 ---
 <script type="text/javascript" src="https://cdn.plot.ly/plotly-2.6.3.min.js"></script>
 <style>
-#ampHandle {
-  width: 5em;
-  height: 1.6em;
-  top: 50%;
-  margin-top: -.8em;
-  margin-left: -2.5em;
-  text-align: center;
-  line-height: 1.6em;
+.sine-slider {
+  width: 600px;
 }
-#freqHandle {
-  width: 5em;
-  height: 1.6em;
-  top: 50%;
-  margin-top: -.8em;
-  margin-left: -2.5em;
-  text-align: center;
-  line-height: 1.6em;
-}
-#phaseHandle {
+.ui-slider-handle.sine-handle {
   width: 5em;
   height: 1.6em;
   top: 50%;
@@ -51,18 +36,18 @@ values of these components with slider bars below the graph.
 <div id="tester" style="width:600px;height:500px;"></div>
 <br>
 Amplitude ($A$)
-<div id="ampSlider" style="width:600px">
-  <div id="ampHandle" class="ui-slider-handle"></div>
+<div id="ampSlider" class="sine-slider">
+  <div id="ampHandle" class="ui-slider-handle sine-handle"></div>
 </div>
 <br>
 Angular frequency ($\omega$)
-<div id="freqSlider" style="width:600px">
-  <div id="freqHandle" class="ui-slider-handle"></div>
+<div id="freqSlider" class="sine-slider">
+  <div id="freqHandle" class="ui-slider-handle sine-handle"></div>
 </div>
 <br>
 Phase ($\phi$)
-<div id="phaseSlider" style="width:600px">
-  <div id="phaseHandle" class="ui-slider-handle"></div>
+<div id="phaseSlider" class="sine-slider">
+  <div id="phaseHandle" class="ui-slider-handle sine-handle"></div>
 </div>
 
 <script type="text/javascript">
