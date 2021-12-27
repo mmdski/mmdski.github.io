@@ -9,3 +9,6 @@ vendor
 
 # web assembly build with meson
 build.wasm32/
+
+# meson build
+build/
