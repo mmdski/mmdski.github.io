@@ -11,6 +11,7 @@ struct ChlMatrix
   real **columns;   /* column arrays */
 };
 
+// creates a new n_rows by n_columns matrix and leaves entries uninitialized
 ChlMatrix
 chl_matrix_new (int n_rows, int n_columns)
 {
@@ -19,14 +20,14 @@ chl_matrix_new (int n_rows, int n_columns)
       return NULL;
     }
 
-  ChlMatrix m;
-  NEW (m);
+  ChlMatrix a;
+  NEW (a);
 
-  if (m == 0)
+  if (a == 0)
     abort ();
 
-  m->n_rows    = n_rows;
-  m->n_columns = n_columns;
+  a->n_rows    = n_rows;
+  a->n_columns = n_columns;
 
   real **columns = chl_calloc (n_columns, sizeof (real *));
   for (int i = 0; i < n_columns; i++)
@@ -34,32 +35,12 @@ chl_matrix_new (int n_rows, int n_columns)
       *(columns + i) = chl_calloc (n_rows, sizeof (real *));
     }
 
-  m->columns = columns;
+  a->columns = columns;
 
-  return m;
+  return a;
 }
 
-int
-chl_matrix_free (ChlMatrix m)
-{
-
-  if (m == NULL)
-    return -1;
-
-  int    n_columns = m->n_columns;
-  real **columns   = m->columns;
-  for (int i = 0; i < n_columns; i++)
-    {
-      chl_free (*(columns + i));
-    }
-
-  chl_free (columns);
-
-  FREE (m);
-
-  return 0;
-}
-
+// creates a new n_rows by n_columns matrix and fills entries with zeros
 ChlMatrix
 chl_matrix_zeros (int n_rows, int n_columns)
 {
@@ -67,21 +48,27 @@ chl_matrix_zeros (int n_rows, int n_columns)
   if (n_rows <= 0 || n_columns <= 0)
     return NULL;
 
-  ChlMatrix m = chl_matrix_new (n_rows, n_columns);
-  if (m == NULL)
+  ChlMatrix a = chl_matrix_new (n_rows, n_columns);
+  if (a == NULL)
     return NULL;
 
   for (int i = 1; i <= n_rows; i++)
     {
       for (int j = 1; j <= n_columns; j++)
         {
-          chl_matrix_set (m, i, j, 0);
+          if (chl_matrix_set (a, i, j, 0) < 0)
+            goto fail;
         }
     }
 
-  return m;
+  return a;
+
+fail:
+  chl_matrix_free (a);
+  return NULL;
 }
 
+// creates a new n by n identity matrix
 ChlMatrix
 chl_matrix_eye (int n)
 {
@@ -89,39 +76,86 @@ chl_matrix_eye (int n)
   if (n <= 0)
     return NULL;
 
-  ChlMatrix m = chl_matrix_new (n, n);
+  ChlMatrix a = chl_matrix_new (n, n);
 
   for (int i = 1; i <= n; i++)
     {
       for (int j = 1; j <= n; j++)
         {
           if (i == j)
-            chl_matrix_set (m, i, j, 1);
+            {
+              if (chl_matrix_set (a, i, j, 1) < 0)
+                goto fail;
+            }
           else
-            chl_matrix_set (m, i, j, 0);
+            {
+              if (chl_matrix_set (a, i, j, 0) < 0)
+                goto fail;
+            }
         }
     }
 
-  return m;
+  return a;
+
+fail:
+  chl_matrix_free (a);
+  return NULL;
 }
 
-int
-chl_matrix_rows (ChlMatrix m)
+// creates a new uninitialized matrix in the same shape as m
+ChlMatrix
+chl_matrix_new_like (ChlMatrix a)
 {
-  if (m == NULL)
-    return -1;
-  return m->n_rows;
+
+  if (a == NULL)
+    return NULL;
+
+  return chl_matrix_new (a->n_rows, a->n_columns);
 }
 
+// frees a matrix
 int
-chl_matrix_cols (ChlMatrix m)
+chl_matrix_free (ChlMatrix a)
 {
-  if (m == NULL)
+
+  if (a == NULL)
     return -1;
 
-  return m->n_columns;
+  int    n_columns = a->n_columns;
+  real **columns   = a->columns;
+  for (int i = 0; i < n_columns; i++)
+    {
+      chl_free (*(columns + i));
+    }
+
+  chl_free (columns);
+
+  FREE (a);
+
+  return 0;
 }
 
+// returns the number of rows in m
+int
+chl_matrix_rows (ChlMatrix a)
+{
+  if (a == NULL)
+    return -1;
+
+  return a->n_rows;
+}
+
+// returns the number of columns in m
+int
+chl_matrix_cols (ChlMatrix a)
+{
+  if (a == NULL)
+    return -1;
+
+  return a->n_columns;
+}
+
+// returns true if all entries in a and b are exactly equal
 bool
 chl_matrix_eq (ChlMatrix a, ChlMatrix b)
 {
@@ -167,41 +201,88 @@ chl_matrix_eq (ChlMatrix a, ChlMatrix b)
   return true;
 }
 
+// gets an entry from a matrix (1-indexed)
 int
-chl_matrix_get (ChlMatrix m, int i, int j, real *value)
+chl_matrix_get (ChlMatrix a, int i, int j, real *value)
 {
   // check for null pointer
-  if (m == NULL)
+  if (a == NULL)
     return -1;
 
   // check for valid indices
-  if (i < 1 || i > m->n_rows || j < 1 || j > m->n_columns)
+  if (i < 1 || i > a->n_rows || j < 1 || j > a->n_columns)
     return -1;
 
-  real *column = *(m->columns + j - 1);
+  real *column = *(a->columns + j - 1);
   *value       = *(column + i - 1);
 
   return 0;
 }
 
+// sets an entry in a matrix (1-indexed)
 int
-chl_matrix_set (ChlMatrix m, int i, int j, real value)
+chl_matrix_set (ChlMatrix a, int i, int j, real value)
 {
 
   // check for null pointer
-  if (m == NULL)
+  if (a == NULL)
     return -1;
 
   // check for valid indices
-  if (i < 1 || i > m->n_rows || j < 1 || j > m->n_columns)
+  if (i < 1 || i > a->n_rows || j < 1 || j > a->n_columns)
     return -1;
 
-  real *column      = *(m->columns + j - 1);
+  real *column      = *(a->columns + j - 1);
   *(column + i - 1) = value;
 
   return 0;
 }
 
+// adds matrices
+ChlMatrix
+chl_matrix_add (ChlMatrix a, ChlMatrix b)
+{
+  // check for null pointers
+  if (a == NULL || b == NULL)
+    {
+      return NULL;
+    }
+
+  // check for equal dimensions
+  if (a->n_rows != b->n_rows || a->n_columns != b->n_columns)
+    {
+      return NULL;
+    }
+
+  real a_value;
+  real b_value;
+
+  int n_rows    = a->n_rows;
+  int n_columns = a->n_columns;
+
+  ChlMatrix c = chl_matrix_new (n_rows, n_columns);
+
+  for (int i = 1; i <= n_rows; i++)
+    {
+      for (int j = 1; j <= n_columns; j++)
+        {
+          if (chl_matrix_get (a, i, j, &a_value) < 0)
+            goto fail;
+          if (chl_matrix_get (b, i, j, &b_value) < 0)
+            goto fail;
+          if (chl_matrix_set (c, i, j, a_value + b_value) < 0)
+            goto fail;
+        }
+    }
+
+  return c;
+
+fail:
+  chl_matrix_free (c);
+  return NULL;
+}
+
+// multiplies matrices
 ChlMatrix
 chl_matrix_mult (ChlMatrix a, ChlMatrix b)
 {
@@ -235,13 +316,52 @@ chl_matrix_mult (ChlMatrix a, ChlMatrix b)
           c_value = 0;
           for (int k = 1; k <= inner_dim; k++)
             {
-              chl_matrix_get (a, i, k, &a_value);
-              chl_matrix_get (b, k, j, &b_value);
+              if (chl_matrix_get (a, i, k, &a_value) < 0)
+                goto fail;
+              if (chl_matrix_get (b, k, j, &b_value) < 0)
+                goto fail;
               c_value += a_value * b_value;
             }
-          chl_matrix_set (c, i, j, c_value);
+          if (chl_matrix_set (c, i, j, c_value) < 0)
+            goto fail;
         }
     }
 
   return c;
+
+fail:
+  chl_matrix_free (c);
+  return NULL;
+}
+
+// matrix scalar multiplication
+ChlMatrix
+chl_matrix_scalar_mult (ChlMatrix a, real c)
+{
+
+  if (a == NULL)
+    return NULL;
+
+  int       n_rows    = a->n_rows;
+  int       n_columns = a->n_columns;
+  ChlMatrix b         = chl_matrix_new (n_rows, n_columns);
+  real      value;
+
+  for (int i = 1; i <= n_rows; i++)
+    {
+      for (int j = 1; j <= n_columns; j++)
+        {
+          if (chl_matrix_get (a, i, j, &value) < 0)
+            goto fail;
+
+          if (chl_matrix_set (b, i, j, c * value) < 0)
+            goto fail;
+        }
+    }
+
+  return b;
+
+fail:
+  chl_matrix_free (b);
+  return NULL;
 }

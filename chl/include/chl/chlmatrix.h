@@ -53,50 +53,61 @@ extern ChlMatrix chl_matrix_zeros (int n_rows, int n_columns);
 extern ChlMatrix chl_matrix_eye (int n);
 
 /**
+ * @brief Creates a new matrix in the same shape of another matrix
+ *
+ * @details The returned matrix must be freed with chl_matrix_free() when no
+ * longer used.
+ *
+ * @param a a matrix
+ * @return new matrix
+ */
+extern ChlMatrix chl_matrix_new_like (ChlMatrix a);
+
+/**
  * @brief Frees a matrix
  *
- * @param m matrix to free
+ * @param a matrix to free
  * @return success indicator
  */
-extern int chl_matrix_free (ChlMatrix m);
+extern int chl_matrix_free (ChlMatrix a);
 
 /**
  * @brief Gets an entry from a matrix
  *
- * @param m matrix
+ * @param a matrix
  * @param i row of entry
  * @param j column of entry
  * @param ptr pointer for value of entry
  * @return success indicator
  */
-extern int chl_matrix_get (ChlMatrix m, int i, int j, real *ptr);
+extern int chl_matrix_get (ChlMatrix a, int i, int j, real *ptr);
 
 /**
  * @brief Sets an entry in a matrix
  *
- * @param m matrix
+ * @param a matrix
  * @param i row of entry
  * @param j column of entry
  * @param value value to set
  * @return success indicator
  */
-extern int chl_matrix_set (ChlMatrix m, int i, int j, real value);
+extern int chl_matrix_set (ChlMatrix a, int i, int j, real value);
 
 /**
  * @brief Returns the number of rows of a matrix
  *
- * @param m matrix
+ * @param a matrix
  * @return number of rows
  */
-extern int chl_matrix_rows (ChlMatrix m);
+extern int chl_matrix_rows (ChlMatrix a);
 
 /**
  * @brief Returns the number of columns of a matrix
  *
- * @param m matrix
+ * @param a matrix
  * @return number of columns
  */
-extern int chl_matrix_cols (ChlMatrix m);
+extern int chl_matrix_cols (ChlMatrix a);
 
 /**
  * @brief Returns @c true if @p a is equal to @p b, @c false otherwise.
@@ -107,6 +118,17 @@ extern int chl_matrix_cols (ChlMatrix m);
  */
 extern bool chl_matrix_eq (ChlMatrix a, ChlMatrix b);
 
+/**
+ * @brief Adds two matrices
+ *
+ * @details Adds two matrices of equal shape. The returned matrix must be freed
+ * with chl_matrix_free() when no longer used.
+ *
+ * @param a a matrix
+ * @param b another matrix
+ * @returns sum of matrices @p a and @p b
+ */
+extern ChlMatrix chl_matrix_add (ChlMatrix a, ChlMatrix b);
 /**
  * @brief Multiplies two matrices
  *
@@ -119,5 +141,18 @@ extern bool chl_matrix_eq (ChlMatrix a, ChlMatrix b);
  * @return success indicator
  */
 extern ChlMatrix chl_matrix_mult (ChlMatrix a, ChlMatrix b);
+
+/**
+ * @brief Multiplies a matrix by a scalar.
+ *
+ * @details Multiplies a matrix @p m by a scalar @p c and returns the resulting
+ * matrix. The returned matrix must be freed with chl_matrix_free() when no
+ * longer used.
+ *
+ * @param a a matrix
+ * @param c a scalar
+ * @return result of scalar multiplication
+ */
+extern ChlMatrix chl_matrix_scalar_mult (ChlMatrix a, real c);
 
 #endif
