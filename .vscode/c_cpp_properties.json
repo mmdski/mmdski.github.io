@@ -1,15 +1,16 @@
 {
     "configurations": [
         {
-            "name": "Linux",
+            "name": "Fedora",
             "includePath": [
-                "${workspaceFolder}/**",
-                "~/src/emscripten/system/include"
+                "~/src/emscripten/system/include",
+                "${workspaceFolder}/chl/**",
+                "/usr/include/glib-2.0",
+                "/usr/lib64/glib-2.0/include"
             ],
             "defines": [],
             "compilerPath": "/usr/bin/gcc",
-            "cStandard": "gnu17",
-            "cppStandard": "gnu++14",
+            "cStandard": "c99",
             "intelliSenseMode": "linux-gcc-x64"
         }
     ],
