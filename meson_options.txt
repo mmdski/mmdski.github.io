@@ -1,2 +1,3 @@
 option('real_is_float', type : 'boolean', value : false)
+option('unit_tests', type : 'boolean', value : false)
 option('mem_test', type : 'boolean', value : false)
