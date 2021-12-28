@@ -5,6 +5,10 @@
 #error "Only <chl.h> can be included directly."
 #endif
 
+#if defined(REAL_IS_FLOAT)
 typedef float real;
+#else
+typedef double real;
+#endif
 
 #endif

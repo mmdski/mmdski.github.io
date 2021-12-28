@@ -4,4 +4,8 @@ project('chulengo', 'c',
 
 js_install_dir = meson.source_root() / 'assets' / 'js'
 
+if get_option('real_is_float')
+    add_project_arguments('-DREAL_IS_FLOAT', language : 'c')
+endif
+
 subdir('chl')

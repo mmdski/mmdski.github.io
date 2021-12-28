@@ -29,10 +29,10 @@ chl_matrix_new (int n_rows, int n_columns)
   a->n_rows    = n_rows;
   a->n_columns = n_columns;
 
-  real **columns = chl_calloc (n_columns, sizeof (real *));
+  real **columns = (real **) chl_calloc (n_columns, sizeof (real **));
   for (int i = 0; i < n_columns; i++)
     {
-      *(columns + i) = chl_calloc (n_rows, sizeof (real *));
+      *(columns + i) = (real *) chl_calloc (n_rows, sizeof (real *));
     }
 
   a->columns = columns;
@@ -213,8 +213,8 @@ chl_matrix_get (ChlMatrix a, int i, int j, real *value)
   if (i < 1 || i > a->n_rows || j < 1 || j > a->n_columns)
     return -1;
 
-  real *column = *(a->columns + j - 1);
-  *value       = *(column + i - 1);
+  real *column = *(a->columns + (j - 1));
+  *value       = *(column + (i - 1));
 
   return 0;
 }
@@ -232,8 +232,8 @@ chl_matrix_set (ChlMatrix a, int i, int j, real value)
   if (i < 1 || i > a->n_rows || j < 1 || j > a->n_columns)
     return -1;
 
-  real *column      = *(a->columns + j - 1);
-  *(column + i - 1) = value;
+  real *column        = *(a->columns + (j - 1));
+  *(column + (i - 1)) = value;
 
   return 0;
 }

@@ -43,4 +43,6 @@ main (int argc, char *argv[])
   test_matrix_zeros ();
   test_matrix_eye ();
   test_matrix_mult ();
+
+  return EXIT_SUCCESS;
 }
