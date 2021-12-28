@@ -5,7 +5,7 @@ _site
 vendor
 
 # visual studio code
-.vscode
+# .vscode
 
 # web assembly build with meson
 build.wasm32/

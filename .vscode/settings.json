@@ -1,0 +1,12 @@
+{
+    "cSpell.words": [
+        "chlmatrix",
+        "chlsin",
+        "HEAPF",
+        "Plotly"
+    ],
+    "files.associations": {
+        "chl.h": "c"
+    },
+    "C_Cpp.errorSquiggles": "Disabled"
+}
