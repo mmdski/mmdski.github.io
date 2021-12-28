@@ -15,7 +15,6 @@ if glib_dep.found()
         )
 endif
 
-vlgnd = find_program('valgrind', required : false)
-if vlgnd.found()
+if get_option('mem_test')
     subdir('memory')
 endif

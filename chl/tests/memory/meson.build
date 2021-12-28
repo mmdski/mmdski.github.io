@@ -1,3 +1,5 @@
+vlgnd = find_program('valgrind', required : true)
+
 matrix_mem_test = executable('matrix_mem_test',
     'matrix_mem_test.c',
     include_directories: [inc],
