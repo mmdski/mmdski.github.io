@@ -143,7 +143,7 @@ extern ChlMatrix chl_matrix_add (ChlMatrix a, ChlMatrix b);
 extern ChlMatrix chl_matrix_mult (ChlMatrix a, ChlMatrix b);
 
 /**
- * @brief Multiplies a matrix by a scalar.
+ * @brief Multiplies a matrix by a scalar
  *
  * @details Multiplies a matrix @p m by a scalar @p c and returns the resulting
  * matrix. The returned matrix must be freed with chl_matrix_free() when no
@@ -154,5 +154,16 @@ extern ChlMatrix chl_matrix_mult (ChlMatrix a, ChlMatrix b);
  * @return result of scalar multiplication
  */
 extern ChlMatrix chl_matrix_scalar_mult (ChlMatrix a, real c);
+
+/**
+ * @brief Returns the transpose of a matrix
+ *
+ * @details Returns the transpose of matrix @p a. The returned matrix is newly
+ * created and must be freed with chl_matrix_free() when no longer in use.
+ *
+ * @param a matrix
+ * @return transpose of @p a
+ */
+extern ChlMatrix chl_matrix_transpose (ChlMatrix a);
 
 #endif

@@ -135,6 +135,44 @@ test_matrix_mult ()
   g_assert_true (chl_matrix_free (c) == 0);
 }
 
+void
+test_matrix_transpose ()
+{
+  int n_rows = 3;
+  int n_cols = 2;
+
+  ChlMatrix a = chl_matrix_new (n_rows, n_cols);
+  g_assert_nonnull (a);
+
+  real a_value;
+  real a_t_value;
+
+  for (int i = 1; i <= n_rows; i++)
+    {
+      for (int j = 1; j <= n_cols; j++)
+        {
+          a_value = i + j - 1;
+          g_assert_true (chl_matrix_set (a, i, j, a_value) == 0);
+        }
+    }
+
+  ChlMatrix a_tranpose = chl_matrix_transpose (a);
+  g_assert_nonnull (a_tranpose);
+
+  for (int i = 1; i <= n_cols; i++)
+    {
+      for (int j = 1; j <= n_rows; j++)
+        {
+          g_assert_true (chl_matrix_get (a, j, i, &a_value) == 0);
+          g_assert_true (chl_matrix_get (a_tranpose, i, j, &a_t_value) == 0);
+          g_assert_true (a_value == a_t_value);
+        }
+    }
+
+  g_assert_true (chl_matrix_free (a) == 0);
+  g_assert_true (chl_matrix_free (a_tranpose) == 0);
+}
+
 int
 main (int argc, char *argv[])
 {
@@ -146,6 +184,7 @@ main (int argc, char *argv[])
   g_test_add_func ("/chl/matrix/eq", test_matrix_eq);
   g_test_add_func ("/chl/matrix/size", test_matrix_size);
   g_test_add_func ("/chl/matrix/mult", test_matrix_mult);
+  g_test_add_func ("/chl/matrix/transpose", test_matrix_transpose);
 
   return g_test_run ();
 }

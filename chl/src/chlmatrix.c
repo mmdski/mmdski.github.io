@@ -365,3 +365,35 @@ fail:
   chl_matrix_free (b);
   return NULL;
 }
+
+// matrix transpose
+ChlMatrix
+chl_matrix_transpose (ChlMatrix a)
+{
+
+  if (a == NULL)
+    return NULL;
+
+  int       n_rows    = a->n_columns;
+  int       n_columns = a->n_rows;
+  ChlMatrix b         = chl_matrix_new (n_rows, n_columns);
+
+  real value;
+
+  for (int i = 1; i <= n_rows; i++)
+    {
+      for (int j = 1; j <= n_columns; j++)
+        {
+          if (chl_matrix_get (a, j, i, &value) < 0)
+            goto fail;
+          if (chl_matrix_set (b, i, j, value) < 0)
+            goto fail;
+        }
+    }
+
+  return b;
+
+fail:
+  chl_matrix_free (b);
+  return NULL;
+}
