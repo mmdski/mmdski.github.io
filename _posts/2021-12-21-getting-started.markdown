@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "Getting started with WebAssembly"
+title:  "Getting Started with WebAssembly"
 date:   2021-12-21 18:55:29 -0600
 tags: [Wasm, JavaScript]
 ---
