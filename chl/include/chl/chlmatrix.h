@@ -67,7 +67,7 @@ extern ChlMatrix chl_matrix_new_like (ChlMatrix a);
  * @brief Frees a matrix
  *
  * @param a matrix to free
- * @return success indicator
+ * @returns 0 if operation was a success, -1 otherwise
  */
 extern int chl_matrix_free (ChlMatrix a);
 
@@ -78,7 +78,7 @@ extern int chl_matrix_free (ChlMatrix a);
  * @param i row of entry
  * @param j column of entry
  * @param ptr pointer for value of entry
- * @return success indicator
+ * @returns 0 if operation was a success, -1 otherwise
  */
 extern int chl_matrix_get (ChlMatrix a, int i, int j, real *ptr);
 
@@ -89,7 +89,7 @@ extern int chl_matrix_get (ChlMatrix a, int i, int j, real *ptr);
  * @param i row of entry
  * @param j column of entry
  * @param value value to set
- * @return success indicator
+ * @returns 0 if operation was a success, -1 otherwise
  */
 extern int chl_matrix_set (ChlMatrix a, int i, int j, real value);
 
@@ -121,49 +121,60 @@ extern bool chl_matrix_eq (ChlMatrix a, ChlMatrix b);
 /**
  * @brief Adds two matrices
  *
- * @details Adds two matrices of equal shape. The returned matrix must be freed
- * with chl_matrix_free() when no longer used.
+ * @details Adds two matrices of equal shape and sets the result to the matrix
+ * @p c. The dimensions of @p a and @p b must be equal.
+ *
+ * @p c may be @c NULL. If @p c is @c NULL, a new matrix will be created. This
+ * newly created matrix must be freed with chl_matrix_free() when no longer in
+ * use.
+ *
+ * If @p c is not @c NULL, @p c must have the same dimensions of @p a and @p b.
  *
  * @param a a matrix
  * @param b another matrix
- * @returns sum of matrices @p a and @p b
+ * @param c pointer to sum of @p a and @p b
+ * @returns 0 if operation was a success, -1 otherwise
  */
-extern ChlMatrix chl_matrix_add (ChlMatrix a, ChlMatrix b);
+extern int chl_matrix_add (ChlMatrix a, ChlMatrix b, ChlMatrix *c_ptr);
 /**
  * @brief Multiplies two matrices
  *
- * @details Multiplies two matrices @p a and @p b and returns the product matrix
- * to. The inner dimensions of @p a and @p b must be equal. The returned matrix
- * must be freed with chl_matrix_free() when no longer used.
+ * @details Multiplies two matrices @p a and @p b and sets the result to the
+ * matrix @p c. The inner dimensions of @p a and @p b must be equal.
+ *
+ * @p c may be @c NULL. If @p c is @c NULL, a new matrix will be created. This
+ * newly created matrix must be freed with chl_matrix_free() when no longer in
+ * use.
+ *
+ * If @p c is not @c NULL, @p c must have dimensions equal to the outer
+ * dimensions of @p a and @p b.
  *
  * @param a left matrix
  * @param b right matrix
- * @return success indicator
+ * @param c_ptr pointer to product of @p a and @p b
+ * @returns 0 if operation was a success, -1 otherwise
  */
-extern ChlMatrix chl_matrix_mult (ChlMatrix a, ChlMatrix b);
+extern int chl_matrix_mult (ChlMatrix a, ChlMatrix b, ChlMatrix *c_ptr);
 
 /**
  * @brief Multiplies a matrix by a scalar
  *
- * @details Multiplies a matrix @p m by a scalar @p c and returns the resulting
- * matrix. The returned matrix must be freed with chl_matrix_free() when no
- * longer used.
+ * @details Multiplies a matrix @p m by a scalar @p c.
  *
- * @param a a matrix
  * @param c a scalar
- * @return result of scalar multiplication
+ * @param a a matrix
+ * @param b_ptr pointer to product of @p c and @p a
+ * @return 0 if operation was a success, -1 otherwise
  */
-extern ChlMatrix chl_matrix_scalar_mult (ChlMatrix a, real c);
+extern int chl_matrix_scalar_mult (real c, ChlMatrix a, ChlMatrix *b_ptr);
 
 /**
  * @brief Returns the transpose of a matrix
  *
- * @details Returns the transpose of matrix @p a. The returned matrix is newly
- * created and must be freed with chl_matrix_free() when no longer in use.
- *
  * @param a matrix
- * @return transpose of @p a
+ * @param a_t_ptr pointer to transpose of @p a
+ * @return 0 if operation was a success, -1 otherwise
  */
-extern ChlMatrix chl_matrix_transpose (ChlMatrix a);
+extern int chl_matrix_transpose (ChlMatrix a, ChlMatrix *a_t_ptr);
 
 #endif

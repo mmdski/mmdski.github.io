@@ -15,8 +15,4 @@ main ()
   printf ("Size of double: %lu\n", sizeof (double));
 
   return EXIT_SUCCESS;
-
-fail:
-  chl_matrix_free (eye);
-  return EXIT_FAILURE;
 }

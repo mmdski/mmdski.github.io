@@ -2,6 +2,7 @@
 #include <chl/chlmatrix.h>
 #include <math.h>
 #include <stddef.h>
+#include <stdio.h>
 #include <stdlib.h>
 
 struct ChlMatrix
@@ -239,28 +240,42 @@ chl_matrix_set (ChlMatrix a, int i, int j, real value)
 }
 
 // adds matrices
-ChlMatrix
-chl_matrix_add (ChlMatrix a, ChlMatrix b)
+int
+chl_matrix_add (ChlMatrix a, ChlMatrix b, ChlMatrix *c_ptr)
 {
   // check for null pointers
   if (a == NULL || b == NULL)
     {
-      return NULL;
+      return -1;
     }
 
   // check for equal dimensions
   if (a->n_rows != b->n_rows || a->n_columns != b->n_columns)
     {
-      return NULL;
+      return -1;
     }
-
-  real a_value;
-  real b_value;
 
   int n_rows    = a->n_rows;
   int n_columns = a->n_columns;
 
-  ChlMatrix c = chl_matrix_new (n_rows, n_columns);
+  ChlMatrix c      = *c_ptr;
+  bool      free_c = false;
+
+  if (c == NULL)
+    {
+      free_c = true;
+      c      = chl_matrix_new (n_rows, n_columns);
+      *c_ptr = c;
+    }
+  else
+    {
+      c = *c_ptr;
+      if (c->n_rows != n_rows || c->n_columns != n_columns)
+        goto fail;
+    }
+
+  real a_value;
+  real b_value;
 
   for (int i = 1; i <= n_rows; i++)
     {
@@ -275,33 +290,49 @@ chl_matrix_add (ChlMatrix a, ChlMatrix b)
         }
     }
 
-  return c;
+  return 0;
 
 fail:
-  chl_matrix_free (c);
-  return NULL;
+  if (free_c)
+    chl_matrix_free (c);
+  return -1;
 }
 
 // multiplies matrices
-ChlMatrix
-chl_matrix_mult (ChlMatrix a, ChlMatrix b)
+int
+chl_matrix_mult (ChlMatrix a, ChlMatrix b, ChlMatrix *c_ptr)
 {
   // check for null pointers
   if (a == NULL || b == NULL)
     {
-      return NULL;
+      return -1;
     }
 
   // check inner dimensions
   if (a->n_columns != b->n_rows)
     {
-      return NULL;
+      return -1;
     }
 
   // initialize the new matrix
-  int       n_rows    = a->n_rows;
-  int       n_columns = b->n_columns;
-  ChlMatrix c         = chl_matrix_new (n_rows, n_columns);
+  int n_rows    = a->n_rows;
+  int n_columns = b->n_columns;
+
+  ChlMatrix c      = *c_ptr;
+  bool      free_c = false;
+
+  if (c == NULL)
+    {
+      free_c = true;
+      c      = chl_matrix_new (n_rows, n_columns);
+      *c_ptr = c;
+    }
+  else
+    {
+      c = *c_ptr;
+      if (c->n_rows != n_rows || c->n_columns != n_columns)
+        goto fail;
+    }
 
   real a_value;
   real b_value;
@@ -327,25 +358,42 @@ chl_matrix_mult (ChlMatrix a, ChlMatrix b)
         }
     }
 
-  return c;
+  return 0;
 
 fail:
-  chl_matrix_free (c);
-  return NULL;
+  if (free_c)
+    chl_matrix_free (c);
+  return -1;
 }
 
 // matrix scalar multiplication
-ChlMatrix
-chl_matrix_scalar_mult (ChlMatrix a, real c)
+int
+chl_matrix_scalar_mult (real c, ChlMatrix a, ChlMatrix *b_ptr)
 {
 
   if (a == NULL)
-    return NULL;
+    return -1;
 
-  int       n_rows    = a->n_rows;
-  int       n_columns = a->n_columns;
-  ChlMatrix b         = chl_matrix_new (n_rows, n_columns);
-  real      value;
+  int n_rows    = a->n_rows;
+  int n_columns = a->n_columns;
+
+  ChlMatrix b      = *b_ptr;
+  bool      free_b = false;
+
+  if (b == NULL)
+    {
+      free_b = true;
+      b      = chl_matrix_new (n_rows, n_columns);
+      *b_ptr = b;
+    }
+  else
+    {
+      b = *b_ptr;
+      if (b->n_rows != n_rows || b->n_columns != n_columns)
+        goto fail;
+    }
+
+  real value;
 
   for (int i = 1; i <= n_rows; i++)
     {
@@ -359,24 +407,40 @@ chl_matrix_scalar_mult (ChlMatrix a, real c)
         }
     }
 
-  return b;
+  return 0;
 
 fail:
-  chl_matrix_free (b);
-  return NULL;
+  if (free_b)
+    chl_matrix_free (b);
+  return -1;
 }
 
 // matrix transpose
-ChlMatrix
-chl_matrix_transpose (ChlMatrix a)
+int
+chl_matrix_transpose (ChlMatrix a, ChlMatrix *a_t_ptr)
 {
 
   if (a == NULL)
-    return NULL;
+    return -1;
 
-  int       n_rows    = a->n_columns;
-  int       n_columns = a->n_rows;
-  ChlMatrix b         = chl_matrix_new (n_rows, n_columns);
+  int n_rows    = a->n_columns;
+  int n_columns = a->n_rows;
+
+  ChlMatrix a_t      = *a_t_ptr;
+  bool      free_a_t = false;
+
+  if (a_t == NULL)
+    {
+      free_a_t = true;
+      a_t      = chl_matrix_new (n_rows, n_columns);
+      *a_t_ptr = a_t;
+    }
+  else
+    {
+      a_t = *a_t_ptr;
+      if (a_t->n_rows != n_rows || a_t->n_columns != n_columns)
+        goto fail;
+    }
 
   real value;
 
@@ -386,14 +450,15 @@ chl_matrix_transpose (ChlMatrix a)
         {
           if (chl_matrix_get (a, j, i, &value) < 0)
             goto fail;
-          if (chl_matrix_set (b, i, j, value) < 0)
+          if (chl_matrix_set (a_t, i, j, value) < 0)
             goto fail;
         }
     }
 
-  return b;
+  return 0;
 
 fail:
-  chl_matrix_free (b);
-  return NULL;
+  if (free_a_t)
+    chl_matrix_free (a_t);
+  return -1;
 }

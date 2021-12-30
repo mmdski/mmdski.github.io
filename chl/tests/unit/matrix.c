@@ -125,7 +125,13 @@ test_matrix_mult ()
   ChlMatrix b = chl_matrix_eye (3);
   g_assert_nonnull (b);
 
-  ChlMatrix c = chl_matrix_mult (a, b);
+  ChlMatrix c = NULL;
+  g_assert_true (chl_matrix_mult (a, b, &c) == 0);
+  g_assert_nonnull (c);
+
+  g_assert_true (chl_matrix_eq (a, c));
+
+  g_assert_true (chl_matrix_mult (a, b, &c) == 0);
   g_assert_nonnull (c);
 
   g_assert_true (chl_matrix_eq (a, c));
@@ -156,21 +162,22 @@ test_matrix_transpose ()
         }
     }
 
-  ChlMatrix a_tranpose = chl_matrix_transpose (a);
-  g_assert_nonnull (a_tranpose);
+  ChlMatrix a_transpose = NULL;
+  g_assert_true (chl_matrix_transpose (a, &a_transpose) == 0);
+  g_assert_nonnull (a_transpose);
 
   for (int i = 1; i <= n_cols; i++)
     {
       for (int j = 1; j <= n_rows; j++)
         {
           g_assert_true (chl_matrix_get (a, j, i, &a_value) == 0);
-          g_assert_true (chl_matrix_get (a_tranpose, i, j, &a_t_value) == 0);
+          g_assert_true (chl_matrix_get (a_transpose, i, j, &a_t_value) == 0);
           g_assert_true (a_value == a_t_value);
         }
     }
 
   g_assert_true (chl_matrix_free (a) == 0);
-  g_assert_true (chl_matrix_free (a_tranpose) == 0);
+  g_assert_true (chl_matrix_free (a_transpose) == 0);
 }
 
 int
