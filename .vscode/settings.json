@@ -1,9 +1,30 @@
 {
     "cSpell.words": [
+        "bmatrix",
+        "cdnjs",
         "chlmatrix",
         "chlsin",
+        "CHTML",
+        "devto",
+        "disqus",
+        "dragmode",
+        "dribbble",
+        "flickr",
+        "forloop",
         "HEAPF",
-        "Plotly"
+        "keybase",
+        "mathjax",
+        "mdate",
+        "microdotblog",
+        "MSVC",
+        "pinterest",
+        "Plotly",
+        "plotsin",
+        "Trefethen",
+        "Valgrind",
+        "xaxis",
+        "xmlschema",
+        "yaxis"
     ],
     "files.associations": {
         "chl.h": "c",
