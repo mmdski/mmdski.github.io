@@ -6,7 +6,10 @@
         "Plotly"
     ],
     "files.associations": {
-        "chl.h": "c"
+        "chl.h": "c",
+        "chlmath.h": "c",
+        "chlmatrix.h": "c",
+        "chlmem.h": "c"
     },
     "C_Cpp.errorSquiggles": "Disabled"
 }
