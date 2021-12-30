@@ -2,7 +2,6 @@
 #include <chl/chlmatrix.h>
 #include <math.h>
 #include <stddef.h>
-#include <stdio.h>
 #include <stdlib.h>
 
 struct ChlMatrix
@@ -294,7 +293,10 @@ chl_matrix_add (ChlMatrix a, ChlMatrix b, ChlMatrix *c_ptr)
 
 fail:
   if (free_c)
-    chl_matrix_free (c);
+    {
+      chl_matrix_free (c);
+      c = NULL;
+    }
   return -1;
 }
 
@@ -362,7 +364,10 @@ chl_matrix_mult (ChlMatrix a, ChlMatrix b, ChlMatrix *c_ptr)
 
 fail:
   if (free_c)
-    chl_matrix_free (c);
+    {
+      chl_matrix_free (c);
+      c = NULL;
+    }
   return -1;
 }
 
@@ -411,7 +416,10 @@ chl_matrix_scalar_mult (real c, ChlMatrix a, ChlMatrix *b_ptr)
 
 fail:
   if (free_b)
-    chl_matrix_free (b);
+    {
+      chl_matrix_free (b);
+      b = NULL;
+    }
   return -1;
 }
 
@@ -459,6 +467,9 @@ chl_matrix_transpose (ChlMatrix a, ChlMatrix *a_t_ptr)
 
 fail:
   if (free_a_t)
-    chl_matrix_free (a_t);
+    {
+      chl_matrix_free (a_t);
+      a_t = NULL;
+    }
   return -1;
 }
