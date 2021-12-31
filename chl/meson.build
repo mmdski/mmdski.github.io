@@ -6,3 +6,8 @@ if target_machine.cpu() == 'x86_64'
     subdir('app')
     subdir('tests')
 endif
+
+# emscripten build
+if target_machine.cpu() == 'wasm32'
+    subdir('ems')
+endif
