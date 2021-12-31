@@ -16,6 +16,9 @@ management is initiated by the JavaScript code but handled by the C implementati
 in Wasm to perform the operations and then formats the results as LaTeX after the operations are completed. MathJax
 displays the LaTeX as mathematical notation.
 
+_edit 2021-12-31:_<br>
+The matrix entries (except the entries in $I$) and the scalar $c$ are now randomly generated when the page is loaded.
+
 ## Matrix multiplication
 
 <!-- The product of the identity matrix $I$ and a vector $x$ -->
@@ -26,13 +29,17 @@ displays the LaTeX as mathematical notation.
 
 <p id="output"></p> -->
 
+<!-- The product of $A$ and a vector $x$ -->
+
 <p id="a-times-x-eq"></p>
 
 ## Scalar multiplication
 
-<!-- The product of a scalar $c=5$ and the identity matrix $I$ -->
+<!-- The product of a scalar $c$ and the identity matrix $I$ -->
 
 <p id="c-times-i-eq"></p>
+
+<!-- The product of a scalar $c$ and $A$ -->
 
 <p id="c-times-a-eq"></p>
 
@@ -47,6 +54,8 @@ displays the LaTeX as mathematical notation.
 <!-- The transpose of $v$, $v^T$ -->
 
 <p id="v-transpose-eq"></p>
+
+<!-- The transpose of $A$, $A^T$ -->
 
 <p id="a-transpose-eq"></p>
 
@@ -81,7 +90,7 @@ displays the LaTeX as mathematical notation.
         // define x
         let x = _matrix_new(n, 1);
         for (let i = 1; i <= n; i++) {
-            _matrix_set(x, i, 1, 3+i)
+            _matrix_set(x, i, 1, getRandomInt());
         }
 
         // multiply I and x
@@ -92,12 +101,11 @@ displays the LaTeX as mathematical notation.
 
         // matrix multiplication: Ax
         let a = _matrix_new(2, 3);
-        _matrix_set(a, 1, 1, -2);
-        _matrix_set(a, 1, 2, 5);
-        _matrix_set(a, 1, 3, 6);
-        _matrix_set(a, 2, 1, 5);
-        _matrix_set(a, 2, 2, 2);
-        _matrix_set(a, 2, 3, 7);
+        for (let i = 1; i <= 2; i++) {
+            for (let j = 1; j <= 3; j++) {
+                _matrix_set(a, i, j, getRandomInt());
+            }
+        }
         let aXProduct = _matrix_mult(a, x);
         let aTimesXEq = document.getElementById("a-times-x-eq");
         aTimesXEq.textContent = "$$Ax = " + getMatrixTex(a) + getMatrixTex(x) + " = " + getMatrixTex(aXProduct) + "$$";
@@ -105,7 +113,7 @@ displays the LaTeX as mathematical notation.
         _matrix_free(aXProduct);
 
         // scalar multiplication by I
-        let c = 5;
+        let c = getRandomInt();
         let cIProduct = _matrix_scalar_mult(c, eye);
         let cTimesIEq = document.getElementById("c-times-i-eq");
         cTimesIEq.textContent = "$$cI = " + c + getMatrixTex(eye) + " = " + getMatrixTex(cIProduct) + "$$"
@@ -120,8 +128,8 @@ displays the LaTeX as mathematical notation.
 
         // linear combination of v and w
         let v = _matrix_new(2, 1);
-        _matrix_set(v, 1, 1, 1);
-        _matrix_set(v, 2, 1, 2);
+        _matrix_set(v, 1, 1, getRandomInt());
+        _matrix_set(v, 2, 1, getRandomInt());
         let w = _matrix_new(2, 1);
         _matrix_set(w, 1, 1, 3);
         _matrix_set(w, 2, 1, 4);
@@ -177,6 +185,11 @@ displays the LaTeX as mathematical notation.
         return matrixTex;
     }
 
+    function getRandomInt() {
+        let min = -10;
+        let max = 10;
+        return Math.floor(Math.random() * (max - min + 1) + min);
+    }
     // console.log(eyePara.textContent);
 </script>
 <script type="text/javascript" src="{{ base.url | prepend: site.url }}/assets/js/chlib.js"></script>
