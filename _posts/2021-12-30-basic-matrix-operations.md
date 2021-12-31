@@ -14,7 +14,7 @@ The operations below were all computed in your browser using the C code I wrote.
 revolves around a matrix object, which is an opaque pointer as far as the JavaScript code is concerned. Matrix memory
 management is initiated by the JavaScript code but handled by the C implementation. The JavaScript code calls functions
 in Wasm to perform the operations and then formats the results as LaTeX after the operations are completed. MathJax
-displays the LaTex as mathematical notation.
+displays the LaTeX as mathematical notation.
 
 ## Matrix multiplication
 
