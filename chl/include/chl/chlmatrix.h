@@ -169,6 +169,20 @@ extern int chl_matrix_mult (ChlMatrix a, ChlMatrix b, ChlMatrix *c_ptr);
 extern int chl_matrix_scalar_mult (real c, ChlMatrix a, ChlMatrix *b_ptr);
 
 /**
+ * @brief Returns the dot product of two vectors
+ *
+ * @details Returns the dot (scalar) product of two vectors. The outer
+ * dimensions of @p a and @p b must be 1, and the inner dimensions must be
+ * equal.
+ *
+ * @param a a row vector
+ * @param b a column vector
+ * @param dot a pointer to a real value
+ * @return 0 if operation was a success, -1 otherwise
+ */
+extern int chl_matrix_dot (ChlMatrix a, ChlMatrix b, real *dot);
+
+/**
  * @brief Returns the transpose of a matrix
  *
  * @param a matrix

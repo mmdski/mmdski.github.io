@@ -423,6 +423,38 @@ fail:
   return -1;
 }
 
+// vector dot product
+int
+chl_matrix_dot (ChlMatrix a, ChlMatrix b, real *dot)
+{
+  // check for null values
+  if (a == NULL || b == NULL)
+    return -1;
+
+  // check for correct dimensions
+  if (a->n_rows != 1 || b->n_columns != 1 || a->n_columns != b->n_rows)
+    return -1;
+
+  int  n = a->n_columns;
+  real a_value;
+  real b_value;
+  real result = 0;
+
+  for (int i = 1; i <= n; i++)
+    {
+      if (chl_matrix_get (a, 1, i, &a_value) < 0)
+        goto fail;
+      if (chl_matrix_get (b, i, 1, &b_value) < 0)
+        goto fail;
+      result += a_value * b_value;
+    }
+
+  *dot = result;
+
+fail:
+  return -1;
+}
+
 // matrix transpose
 int
 chl_matrix_transpose (ChlMatrix a, ChlMatrix *a_t_ptr)
