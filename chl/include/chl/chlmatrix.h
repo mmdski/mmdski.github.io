@@ -1,6 +1,6 @@
 /**
  * @file chlmatrix.h
- * @brief Matrix interface for CHL
+ * @brief Matrix interface
  */
 
 #ifndef __CHL_MATRIX_H__
@@ -14,7 +14,7 @@
 #include <stdbool.h>
 
 /**
- * Matrix
+ * Matrix object
  */
 typedef struct ChlMatrix *ChlMatrix;
 
@@ -55,7 +55,7 @@ extern ChlMatrix chl_matrix_new_from (int n_rows, int n_columns, real *entries);
  *
  * @param n_rows number of rows
  * @param n_columns number of columns
- * @return new matrix
+ * @return a new matrix
  */
 extern ChlMatrix chl_matrix_zeros (int n_rows, int n_columns);
 
@@ -151,6 +151,7 @@ extern bool chl_matrix_eq (ChlMatrix a, ChlMatrix b);
  * @returns 0 if operation was a success, -1 otherwise
  */
 extern int chl_matrix_add (ChlMatrix a, ChlMatrix b, ChlMatrix *c_ptr);
+
 /**
  * @brief Multiplies two matrices
  *

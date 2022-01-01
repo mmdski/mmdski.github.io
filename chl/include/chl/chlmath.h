@@ -1,3 +1,8 @@
+/**
+ * @file chlmath.h
+ * @brief Math definitions
+ */
+
 #ifndef __CHL_MATH_H__
 #define __CHL_MATH_H__
 

@@ -60,9 +60,13 @@ plugins:
 #   - vendor/gems/
 #   - vendor/ruby/
 exclude:
-  - build.wasm32
+  - build/
+  - build.float/
+  - build.mem/
+  - builddir/
   - chl/
   - meson.build
+  - meson_options.txt
   - README.md
   - requirements.txt
   - script/
