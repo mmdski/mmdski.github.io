@@ -32,6 +32,21 @@ typedef struct ChlMatrix *ChlMatrix;
 extern ChlMatrix chl_matrix_new (int n_rows, int n_columns);
 
 /**
+ * @brief Creates a new matrix from allocated memory
+ *
+ * @details Creates a new matrix from allocated memory. This function
+ * returns @c NULL if creation fails. The returned matrix must be freed with
+ * chl_matrix_free() when no longer in use. chl_matrix_free() will not free the
+ * memory allocated for @p entries.
+ *
+ * @param n_rows number of rows
+ * @param n_columns number of columns
+ * @param entries pointer to allocated memory for matrix entries
+ * @return new empty matrix
+ */
+extern ChlMatrix chl_matrix_new_from (int n_rows, int n_columns, real *entries);
+
+/**
  * @brief Creates a new matrix and initializes all entries to zero
  *
  * @details Creates a new matrix with all entries initialized to zero. This

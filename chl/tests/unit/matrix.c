@@ -1,5 +1,6 @@
 #include <chl.h>
 #include <glib.h>
+#include <stdlib.h>
 
 void
 test_matrix_new ()
@@ -23,6 +24,38 @@ test_matrix_new ()
   m = NULL;
   m = chl_matrix_new (-1, n_columns);
   g_assert_null (m);
+}
+
+void
+test_matrix_new_from ()
+{
+  int n_rows     = 5;
+  int n_columns  = 2;
+  int n_elements = n_rows * n_columns;
+
+  real *elements = (real *) calloc (n_elements, sizeof (real *));
+
+  ChlMatrix a = chl_matrix_new_from (n_rows, n_columns, elements);
+  g_assert_nonnull (a);
+
+  for (int i = 0; i < n_elements; i++)
+    {
+      elements[i] = rand ();
+    }
+
+  real entry;
+  int  k = 0;
+  for (int j = 1; j <= n_columns; j++)
+    {
+      for (int i = 1; i <= n_rows; i++)
+        {
+          g_assert_true (chl_matrix_get (a, i, j, &entry) == 0);
+          g_assert_cmpfloat (elements[k++], ==, entry);
+        }
+    }
+
+  g_assert_true (chl_matrix_free (a) == 0);
+  free (elements);
 }
 
 void
@@ -186,6 +219,7 @@ main (int argc, char *argv[])
   g_test_init (&argc, &argv, NULL);
 
   g_test_add_func ("/chl/matrix/new", test_matrix_new);
+  g_test_add_func ("/chl/matrix/new_from", test_matrix_new_from);
   g_test_add_func ("/chl/matrix/zeros", test_matrix_zeros);
   g_test_add_func ("/chl/matrix/eye", test_matrix_eye);
   g_test_add_func ("/chl/matrix/eq", test_matrix_eq);
