@@ -45,9 +45,9 @@ test_matrix_new_from ()
 
   real entry;
   int  k = 0;
-  for (int j = 1; j <= n_columns; j++)
+  for (int i = 1; i <= n_rows; i++)
     {
-      for (int i = 1; i <= n_rows; i++)
+      for (int j = 1; j <= n_columns; j++)
         {
           g_assert_true (chl_matrix_get (a, i, j, &entry) == 0);
           g_assert_cmpfloat (elements[k++], ==, entry);

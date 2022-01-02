@@ -11,7 +11,7 @@ struct ChlMatrix
   int    n_columns;     /* number of columns */
   bool   free_elements; /* free elements indicator */
   real * elements;      /* flat array of elements */
-  real **columns;       /* column arrays */
+  real **rows;          /* row arrays */
 };
 
 // creates a new n_rows by n_columns matrix and leaves entries uninitialized
@@ -46,17 +46,17 @@ chl_matrix_new_from (int n_rows, int n_columns, real *elements)
   if (a == 0)
     abort ();
 
-  real **columns = (real **) chl_calloc (n_columns, sizeof (real **));
-  for (int j = 0; j < n_columns; j++)
+  real **rows = (real **) chl_calloc (n_rows, sizeof (real **));
+  for (int i = 0; i < n_rows; i++)
     {
-      *(columns + j) = elements + j * n_rows;
+      *(rows + i) = elements + i * n_columns;
     }
 
   a->n_rows        = n_rows;
   a->n_columns     = n_columns;
   a->free_elements = false;
   a->elements      = elements;
-  a->columns       = columns;
+  a->rows          = rows;
 
   return a;
 }
@@ -145,7 +145,7 @@ chl_matrix_free (ChlMatrix a)
   if (a->free_elements)
     chl_free (a->elements);
 
-  chl_free (a->columns);
+  chl_free (a->rows);
 
   FREE (a);
 
@@ -230,7 +230,7 @@ chl_matrix_get (ChlMatrix a, int i, int j, real *value)
   if (i < 1 || i > a->n_rows || j < 1 || j > a->n_columns)
     return -1;
 
-  *value = a->columns[j - 1][i - 1];
+  *value = a->rows[i - 1][j - 1];
 
   return 0;
 }
@@ -248,7 +248,7 @@ chl_matrix_set (ChlMatrix a, int i, int j, real value)
   if (i < 1 || i > a->n_rows || j < 1 || j > a->n_columns)
     return -1;
 
-  a->columns[j - 1][i - 1] = value;
+  a->rows[i - 1][j - 1] = value;
 
   return 0;
 }
