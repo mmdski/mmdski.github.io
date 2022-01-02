@@ -63,8 +63,9 @@ exclude:
   - build/
   - build.float/
   - build.mem/
+  - build.wasm32/
   - builddir/
-  - chl/
+  - chlib/
   - meson.build
   - meson_options.txt
   - README.md

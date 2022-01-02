@@ -1,4 +1,4 @@
-project('chulengo', 'c',
+project('chlib', 'c',
     default_options : ['c_std=c99', 'c_args=-Wall', 'b_ndebug=if-release'],
     version : '0.0.0')
 
@@ -8,4 +8,4 @@ if get_option('real_is_float')
     add_project_arguments('-DREAL_IS_FLOAT', language : 'c')
 endif
 
-subdir('chl')
+subdir('chlib')
