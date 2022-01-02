@@ -388,7 +388,7 @@ fail:
 
 // matrix scalar multiplication
 int
-chl_matrix_scalar_mult (real c, ChlMatrix a, ChlMatrix *b_ptr)
+chl_matrix_scalar_mult (ChlMatrix a, real c, ChlMatrix *b_ptr)
 {
 
   if (a == NULL)

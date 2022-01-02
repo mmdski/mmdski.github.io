@@ -1906,10 +1906,10 @@ var _matrix_scalar_mult = Module["_matrix_scalar_mult"] = createExportWrapper("m
 var _matrix_dot = Module["_matrix_dot"] = createExportWrapper("matrix_dot");
 
 /** @type {function(...*):?} */
-var _matrix_transpose = Module["_matrix_transpose"] = createExportWrapper("matrix_transpose");
+var _matrix_add = Module["_matrix_add"] = createExportWrapper("matrix_add");
 
 /** @type {function(...*):?} */
-var _matrix_add = Module["_matrix_add"] = createExportWrapper("matrix_add");
+var _matrix_transpose = Module["_matrix_transpose"] = createExportWrapper("matrix_transpose");
 
 /** @type {function(...*):?} */
 var _malloc = Module["_malloc"] = createExportWrapper("malloc");

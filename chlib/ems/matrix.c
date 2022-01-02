@@ -73,10 +73,10 @@ matrix_mult (ChlMatrix a, ChlMatrix b)
 // multiply a matrix by a scalar
 EMSCRIPTEN_KEEPALIVE
 ChlMatrix
-matrix_scalar_mult (real c, ChlMatrix a)
+matrix_scalar_mult (ChlMatrix a, real c)
 {
   ChlMatrix b = NULL;
-  chl_matrix_scalar_mult (c, a, &b);
+  chl_matrix_scalar_mult (a, c, &b);
   return b;
 }
 

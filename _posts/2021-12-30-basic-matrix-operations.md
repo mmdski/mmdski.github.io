@@ -114,14 +114,14 @@ The matrix entries (except the entries in $I$) and the scalar $c$ are now random
 
         // scalar multiplication by I
         let c = getRandomInt();
-        let cIProduct = _matrix_scalar_mult(c, eye);
+        let cIProduct = _matrix_scalar_mult(eye, c);
         let cTimesIEq = document.getElementById("c-times-i-eq");
         cTimesIEq.textContent = "$$cI = " + c + getMatrixTex(eye) + " = " + getMatrixTex(cIProduct) + "$$"
         _matrix_free(cIProduct);
         _matrix_free(eye);
 
         // scalar multiplication by A
-        let aIProduct = _matrix_scalar_mult(c, a);
+        let aIProduct = _matrix_scalar_mult(a, c);
         let aTimesIEq = document.getElementById("c-times-a-eq");
         aTimesIEq.textContent = "$$cA = " + c + getMatrixTex(a) + " = " + getMatrixTex(aIProduct) + "$$"
         _matrix_free(aIProduct);

@@ -175,14 +175,14 @@ extern int chl_matrix_mult (ChlMatrix a, ChlMatrix b, ChlMatrix *c_ptr);
 /**
  * @brief Multiplies a matrix by a scalar
  *
- * @details Multiplies a matrix @p m by a scalar @p c.
+ * @details Multiplies a matrix @p a by a scalar @p c.
  *
- * @param c a scalar
  * @param a a matrix
+ * @param c a scalar
  * @param b_ptr pointer to product of @p c and @p a
  * @return 0 if operation was a success, -1 otherwise
  */
-extern int chl_matrix_scalar_mult (real c, ChlMatrix a, ChlMatrix *b_ptr);
+extern int chl_matrix_scalar_mult (ChlMatrix a, real c, ChlMatrix *b_ptr);
 
 /**
  * @brief Returns the dot product of two vectors
