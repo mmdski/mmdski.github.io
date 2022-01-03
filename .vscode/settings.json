@@ -36,5 +36,7 @@
         "chlmatrix.h": "c",
         "chlmem.h": "c"
     },
-    "C_Cpp.errorSquiggles": "Disabled"
+    "C_Cpp.errorSquiggles": "Disabled",
+    "python.pythonPath": "${workspaceFolder}/env",
+    "restructuredtext.confPath": "${workspaceFolder}/chlib/docs"
 }
