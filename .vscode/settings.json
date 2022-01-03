@@ -29,14 +29,5 @@
         "xaxis",
         "xmlschema",
         "yaxis"
-    ],
-    "files.associations": {
-        "chl.h": "c",
-        "chlmath.h": "c",
-        "chlmatrix.h": "c",
-        "chlmem.h": "c"
-    },
-    "C_Cpp.errorSquiggles": "Disabled",
-    "python.defaultInterpreterPath": "${workspaceFolder}/env/bin/python",
-    "restructuredtext.confPath": "${workspaceFolder}/chlib/docs"
+    ]
 }
