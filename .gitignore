@@ -4,11 +4,5 @@ _site
 .jekyll-metadata
 vendor
 
-# python
-env/
-
 # visual studio code
 # .vscode
-
-# meson build
-build*/
