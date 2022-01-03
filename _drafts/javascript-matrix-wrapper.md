@@ -67,12 +67,11 @@ title: JavaScript Matrix Wrapper
 
         // define x
         let x = Matrix.new(n, 1);
-        for (let i = 0; i < n; i++) {
-            x[i][0] = getRandomInt();
+        for (let i = 1; i <= n; i++) {
+            x.set(i, 1, getRandomInt());
         }
 
         // multiply I and x
-        // let x_product = _matrix_mult(eye, x);
         let xIProduct = eye.multiply(x);
         let xTimesIEq = document.getElementById("i-times-x-eq");
         xTimesIEq.textContent = "$$Ix = " + eye.toTex() + x.toTex() + "$$";
@@ -81,9 +80,9 @@ title: JavaScript Matrix Wrapper
 
         // matrix multiplication: Ax
         let a = Matrix.new(2, 3);
-        for (let i = 0; i < 2; i++) {
-            for (let j = 0; j < 3; j++) {
-                a[i][j] = getRandomInt();
+        for (let i = 1; i <= 2; i++) {
+            for (let j = 1; j <= 3; j++) {
+                a.set(i, j, getRandomInt())
             }
         }
         let aXProduct = a.multiply(x);
@@ -111,9 +110,9 @@ title: JavaScript Matrix Wrapper
         // linear combination of v and w
         let v = Matrix.new(2, 1);
         let w = Matrix.new(2, 1);
-        for (let i = 0; i < 2; i++) {
-            v[i][0] = getRandomInt();
-            w[i][0] = getRandomInt();
+        for (let i = 1; i <= 2; i++) {
+            v.set(i, 1, getRandomInt());
+            w.set(i, 1, getRandomInt());
         }
         let linearCombo = v.add(w);
         let linearComboEq = document.getElementById("linear-combo-eq");

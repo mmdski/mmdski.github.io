@@ -16,10 +16,10 @@ class Matrix {
         this._free_entries = false;
 
         let ptr_offset;
-
+        this._rows = {};
         for (let i = 0; i < n_rows; i++) {
             ptr_offset = i * n_columns * Float32Array.BYTES_PER_ELEMENT;
-            this[i] = new Float32Array(HEAPF32.buffer, entries_ptr + ptr_offset, n_columns);
+            this._rows[i] = new Float32Array(HEAPF32.buffer, entries_ptr + ptr_offset, n_columns);
         }
     }
 
@@ -52,13 +52,13 @@ class Matrix {
     static eye(n) {
         let eye = Matrix.new(n, n);
         let entry;
-        for (let i = 0; i < n; i++) {
-            for (let j = 0; j < n; j++) {
+        for (let i = 1; i <= n; i++) {
+            for (let j = 1; j <= n; j++) {
                 if (i == j)
                     entry = 1;
                 else
                     entry = 0;
-                eye[i][j] = entry;
+                eye.set(i, j, entry);
             }
         }
 
@@ -77,6 +77,10 @@ class Matrix {
             _free(this._entries);
             delete this._entries;
         }
+    }
+
+    get(row, col) {
+        return this._rows[row - 1][col - 1];
     }
 
     /**
@@ -120,6 +124,10 @@ class Matrix {
         let matrix = new Matrix(n_rows, n_columns, entries_ptr);
         matrix._free_entries = true;
         return matrix;
+    }
+
+    set(row, col, value) {
+        this._rows[row - 1][col - 1] = value;
     }
 
     /**
