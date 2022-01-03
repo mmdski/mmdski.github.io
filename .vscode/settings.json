@@ -37,6 +37,6 @@
         "chlmem.h": "c"
     },
     "C_Cpp.errorSquiggles": "Disabled",
-    "python.pythonPath": "${workspaceFolder}/env",
+    "python.defaultInterpreterPath": "${workspaceFolder}/env/bin/python",
     "restructuredtext.confPath": "${workspaceFolder}/chlib/docs"
 }
