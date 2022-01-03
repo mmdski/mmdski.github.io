@@ -94,10 +94,11 @@ The matrix entries (except the entries in $I$) and the scalar $c$ are now random
         }
 
         // multiply I and x
-        let x_product = _matrix_mult(eye, x);
+        let iXProduct = _matrix_new(n_rows, 1);
+        _matrix_mult(eye, x, iXProduct);
         let xTimesIEq = document.getElementById("i-times-x-eq");
-        xTimesIEq.textContent = "$$Ix = " + getMatrixTex(eye) + getMatrixTex(x) + " = " + getMatrixTex(x_product) + "$$";
-        _matrix_free(x_product); // free the product
+        xTimesIEq.textContent = "$$Ix = " + getMatrixTex(eye) + getMatrixTex(x) + " = " + getMatrixTex(iXProduct) + "$$";
+        _matrix_free(iXProduct); // free the product
 
         // matrix multiplication: Ax
         let a = _matrix_new(2, 3);
@@ -106,7 +107,8 @@ The matrix entries (except the entries in $I$) and the scalar $c$ are now random
                 _matrix_set(a, i, j, getRandomInt());
             }
         }
-        let aXProduct = _matrix_mult(a, x);
+        let aXProduct = _matrix_new(2, 1);
+        _matrix_mult(a, x, aXProduct);
         let aTimesXEq = document.getElementById("a-times-x-eq");
         aTimesXEq.textContent = "$$Ax = " + getMatrixTex(a) + getMatrixTex(x) + " = " + getMatrixTex(aXProduct) + "$$";
         _matrix_free(x);
@@ -114,14 +116,16 @@ The matrix entries (except the entries in $I$) and the scalar $c$ are now random
 
         // scalar multiplication by I
         let c = getRandomInt();
-        let cIProduct = _matrix_scalar_mult(eye, c);
+        let cIProduct = _matrix_new(n, n);
+        _matrix_scalar_mult(eye, c, cIProduct);
         let cTimesIEq = document.getElementById("c-times-i-eq");
         cTimesIEq.textContent = "$$cI = " + c + getMatrixTex(eye) + " = " + getMatrixTex(cIProduct) + "$$"
         _matrix_free(cIProduct);
         _matrix_free(eye);
 
         // scalar multiplication by A
-        let aIProduct = _matrix_scalar_mult(a, c);
+        let aIProduct = _matrix_new(2, 3);
+        _matrix_scalar_mult(a, c, aIProduct);
         let aTimesIEq = document.getElementById("c-times-a-eq");
         aTimesIEq.textContent = "$$cA = " + c + getMatrixTex(a) + " = " + getMatrixTex(aIProduct) + "$$"
         _matrix_free(aIProduct);
@@ -133,18 +137,21 @@ The matrix entries (except the entries in $I$) and the scalar $c$ are now random
         let w = _matrix_new(2, 1);
         _matrix_set(w, 1, 1, 3);
         _matrix_set(w, 2, 1, 4);
-        let linearCombo = _matrix_add(v, w);
+        let linearCombo = _matrix_new(2, 1);
+        _matrix_add(v, w, linearCombo);
         let linearComboEq = document.getElementById("linear-combo-eq");
         linearComboEq.textContent = "$$v + w = " + getMatrixTex(v) + " + " + getMatrixTex(w) + " = " + getMatrixTex(linearCombo) + "$$";
         _matrix_free(linearCombo);
 
         // transpose v
-        let vT = _matrix_transpose(v);
+        let vT = _matrix_new(1, 2);
+        _matrix_transpose(v, vT);
         let vTEq = document.getElementById("v-transpose-eq");
         vTEq.textContent = "$$v^T = " + getMatrixTex(vT) + "$$";
 
         // transpose a
-        let aT = _matrix_transpose(a);
+        let aT = _matrix_new(3, 2);
+        _matrix_transpose(a, aT);
         let aTEq = document.getElementById("a-transpose-eq");
         aTEq.textContent = "$$A^T = " + getMatrixTex(aT) + "$$";
         _matrix_free(a);

@@ -10,9 +10,16 @@ matrix_new (int n_rows, int n_columns)
   return chl_matrix_new (n_rows, n_columns);
 }
 
-// creates a new identity matrix
+// creates a new matrix from previously allocated memory
 EMSCRIPTEN_KEEPALIVE
 ChlMatrix
+matrix_new_from (int n_rows, int n_columns, real *entries)
+{
+  return chl_matrix_new_from (n_rows, n_columns, entries);
+}
+
+// creates a new identity matrix
+EMSCRIPTEN_KEEPALIVE ChlMatrix
 matrix_eye (int n)
 {
   return chl_matrix_eye (n);
@@ -62,22 +69,18 @@ matrix_set (ChlMatrix a, int i, int j, real value)
 
 // multiplies two matrices
 EMSCRIPTEN_KEEPALIVE
-ChlMatrix
-matrix_mult (ChlMatrix a, ChlMatrix b)
+void
+matrix_mult (ChlMatrix a, ChlMatrix b, ChlMatrix c)
 {
-  ChlMatrix c = NULL;
   chl_matrix_mult (a, b, &c);
-  return c;
 }
 
 // multiply a matrix by a scalar
 EMSCRIPTEN_KEEPALIVE
-ChlMatrix
-matrix_scalar_mult (ChlMatrix a, real c)
+void
+matrix_scalar_mult (ChlMatrix a, real c, ChlMatrix b)
 {
-  ChlMatrix b = NULL;
   chl_matrix_scalar_mult (a, c, &b);
-  return b;
 }
 
 // vector dot product
@@ -92,20 +95,16 @@ matrix_dot (ChlMatrix a, ChlMatrix b)
 
 // linear sum of matrices
 EMSCRIPTEN_KEEPALIVE
-ChlMatrix
-matrix_add (ChlMatrix a, ChlMatrix b)
+void
+matrix_add (ChlMatrix a, ChlMatrix b, ChlMatrix c)
 {
-  ChlMatrix c = NULL;
   chl_matrix_add (a, b, &c);
-  return c;
 }
 
 // transpose of a matrix
 EMSCRIPTEN_KEEPALIVE
-ChlMatrix
-matrix_transpose (ChlMatrix a)
+void
+matrix_transpose (ChlMatrix a, ChlMatrix a_t)
 {
-  ChlMatrix a_t = NULL;
   chl_matrix_transpose (a, &a_t);
-  return a_t;
 }
