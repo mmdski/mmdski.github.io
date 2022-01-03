@@ -13,6 +13,10 @@
 #if defined(REAL_IS_FLOAT)
 typedef float real;
 #else
+/**
+ * @brief Real number type used throughout chlib
+ *
+ */
 typedef double real;
 #endif
 

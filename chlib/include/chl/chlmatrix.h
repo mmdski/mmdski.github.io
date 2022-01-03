@@ -147,7 +147,7 @@ extern bool chl_matrix_eq (ChlMatrix a, ChlMatrix b);
  *
  * @param a a matrix
  * @param b another matrix
- * @param c pointer to sum of @p a and @p b
+ * @param c_ptr pointer to sum of @p a and @p b
  * @returns 0 if operation was a success, -1 otherwise
  */
 extern int chl_matrix_add (ChlMatrix a, ChlMatrix b, ChlMatrix *c_ptr);
