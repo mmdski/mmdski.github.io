@@ -1,0 +1,842 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.17">
+  <compounddef id="chlmatrix_8h" kind="file" language="C++">
+    <compoundname>chlmatrix.h</compoundname>
+    <includes refid="chlmath_8h" local="no">chl/chlmath.h</includes>
+    <includes local="no">stdbool.h</includes>
+    <includedby refid="chl_8h" local="no">chl.h</includedby>
+    <incdepgraph>
+      <node id="3">
+        <label>stdbool.h</label>
+      </node>
+      <node id="2">
+        <label>chl/chlmath.h</label>
+        <link refid="chlmath_8h"/>
+      </node>
+      <node id="1">
+        <label>chl/chlmatrix.h</label>
+        <link refid="chlmatrix_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+    </incdepgraph>
+    <invincdepgraph>
+      <node id="2">
+        <label>chl.h</label>
+        <link refid="chl_8h"/>
+      </node>
+      <node id="1">
+        <label>chl/chlmatrix.h</label>
+        <link refid="chlmatrix_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+      </node>
+    </invincdepgraph>
+      <sectiondef kind="typedef">
+      <memberdef kind="typedef" id="chlmatrix_8h_1abeba4a179891ef9ee1862498a9cf7737" prot="public" static="no">
+        <type>struct <ref refid="chlmatrix_8h_1abeba4a179891ef9ee1862498a9cf7737" kindref="member">ChlMatrix</ref> *</type>
+        <definition>typedef struct ChlMatrix* ChlMatrix</definition>
+        <argsstring></argsstring>
+        <name>ChlMatrix</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Matrix object </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="chl/chlmatrix.h" line="19" column="24" bodyfile="chl/chlmatrix.h" bodystart="19" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="func">
+      <memberdef kind="function" id="chlmatrix_8h_1adf10b0f895d604d81c04f6537a020bdb" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="chlmatrix_8h_1abeba4a179891ef9ee1862498a9cf7737" kindref="member">ChlMatrix</ref></type>
+        <definition>ChlMatrix chl_matrix_new</definition>
+        <argsstring>(int n_rows, int n_columns)</argsstring>
+        <name>chl_matrix_new</name>
+        <param>
+          <type>int</type>
+          <declname>n_rows</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>n_columns</declname>
+        </param>
+        <briefdescription>
+<para>Creates a new uninitialized matrix. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Creates a new matrix with uninitialized values. This function returns <computeroutput>NULL</computeroutput> if creation fails. The returned matrix must be freed with <ref refid="chlmatrix_8h_1a387a5ae70e65a85813f6bb6372d3b071" kindref="member">chl_matrix_free()</ref> when no longer in use.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>n_rows</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>number of rows </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>n_columns</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>number of columns </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>new empty matrix </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="chl/chlmatrix.h" line="32" column="18" declfile="chl/chlmatrix.h" declline="32" declcolumn="18"/>
+      </memberdef>
+      <memberdef kind="function" id="chlmatrix_8h_1a13c7610c44ac35f66b3cbd50afa77fe7" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="chlmatrix_8h_1abeba4a179891ef9ee1862498a9cf7737" kindref="member">ChlMatrix</ref></type>
+        <definition>ChlMatrix chl_matrix_new_from</definition>
+        <argsstring>(int n_rows, int n_columns, real *entries)</argsstring>
+        <name>chl_matrix_new_from</name>
+        <param>
+          <type>int</type>
+          <declname>n_rows</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>n_columns</declname>
+        </param>
+        <param>
+          <type><ref refid="chlmath_8h_1a11d147c64891830c9e79b3315b1b2e21" kindref="member">real</ref> *</type>
+          <declname>entries</declname>
+        </param>
+        <briefdescription>
+<para>Creates a new matrix from allocated memory. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Creates a new matrix from allocated memory. This function returns <computeroutput>NULL</computeroutput> if creation fails. The returned matrix must be freed with <ref refid="chlmatrix_8h_1a387a5ae70e65a85813f6bb6372d3b071" kindref="member">chl_matrix_free()</ref> when no longer in use. <ref refid="chlmatrix_8h_1a387a5ae70e65a85813f6bb6372d3b071" kindref="member">chl_matrix_free()</ref> will not free the memory allocated for <computeroutput>entries</computeroutput>.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>n_rows</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>number of rows </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>n_columns</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>number of columns </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>entries</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>pointer to allocated memory for matrix entries </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>new empty matrix </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="chl/chlmatrix.h" line="47" column="18" declfile="chl/chlmatrix.h" declline="47" declcolumn="18"/>
+      </memberdef>
+      <memberdef kind="function" id="chlmatrix_8h_1a3f83568008c648c8ba1256f54a97f1a6" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="chlmatrix_8h_1abeba4a179891ef9ee1862498a9cf7737" kindref="member">ChlMatrix</ref></type>
+        <definition>ChlMatrix chl_matrix_zeros</definition>
+        <argsstring>(int n_rows, int n_columns)</argsstring>
+        <name>chl_matrix_zeros</name>
+        <param>
+          <type>int</type>
+          <declname>n_rows</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>n_columns</declname>
+        </param>
+        <briefdescription>
+<para>Creates a new matrix and initializes all entries to zero. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Creates a new matrix with all entries initialized to zero. This function returns <computeroutput>NULL</computeroutput> if creation fails. The returned matrix must be freed with <ref refid="chlmatrix_8h_1a387a5ae70e65a85813f6bb6372d3b071" kindref="member">chl_matrix_free()</ref> when no longer in use.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>n_rows</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>number of rows </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>n_columns</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>number of columns </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>a new matrix </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="chl/chlmatrix.h" line="60" column="18" declfile="chl/chlmatrix.h" declline="60" declcolumn="18"/>
+      </memberdef>
+      <memberdef kind="function" id="chlmatrix_8h_1a0d2018c2420ded4fd93b0c6a45aec23b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="chlmatrix_8h_1abeba4a179891ef9ee1862498a9cf7737" kindref="member">ChlMatrix</ref></type>
+        <definition>ChlMatrix chl_matrix_eye</definition>
+        <argsstring>(int n)</argsstring>
+        <name>chl_matrix_eye</name>
+        <param>
+          <type>int</type>
+          <declname>n</declname>
+        </param>
+        <briefdescription>
+<para>Creates a new square identity matrix. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>n</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>shape of square matrix </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>new identity matrix </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="chl/chlmatrix.h" line="68" column="18" declfile="chl/chlmatrix.h" declline="68" declcolumn="18"/>
+      </memberdef>
+      <memberdef kind="function" id="chlmatrix_8h_1a13191389e2bc7d697aef2b3a8b112a9e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="chlmatrix_8h_1abeba4a179891ef9ee1862498a9cf7737" kindref="member">ChlMatrix</ref></type>
+        <definition>ChlMatrix chl_matrix_new_like</definition>
+        <argsstring>(ChlMatrix a)</argsstring>
+        <name>chl_matrix_new_like</name>
+        <param>
+          <type><ref refid="chlmatrix_8h_1abeba4a179891ef9ee1862498a9cf7737" kindref="member">ChlMatrix</ref></type>
+          <declname>a</declname>
+        </param>
+        <briefdescription>
+<para>Creates a new matrix in the same shape of another matrix. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>The returned matrix must be freed with <ref refid="chlmatrix_8h_1a387a5ae70e65a85813f6bb6372d3b071" kindref="member">chl_matrix_free()</ref> when no longer used.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>a</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>a matrix </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>new matrix </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="chl/chlmatrix.h" line="79" column="18" declfile="chl/chlmatrix.h" declline="79" declcolumn="18"/>
+      </memberdef>
+      <memberdef kind="function" id="chlmatrix_8h_1a387a5ae70e65a85813f6bb6372d3b071" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int chl_matrix_free</definition>
+        <argsstring>(ChlMatrix a)</argsstring>
+        <name>chl_matrix_free</name>
+        <param>
+          <type><ref refid="chlmatrix_8h_1abeba4a179891ef9ee1862498a9cf7737" kindref="member">ChlMatrix</ref></type>
+          <declname>a</declname>
+        </param>
+        <briefdescription>
+<para>Frees a matrix. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>a</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>matrix to free </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>0 if operation was a success, -1 otherwise </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="chl/chlmatrix.h" line="87" column="12" declfile="chl/chlmatrix.h" declline="87" declcolumn="12"/>
+      </memberdef>
+      <memberdef kind="function" id="chlmatrix_8h_1a25452587da05a61bb82d0751403a2b76" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int chl_matrix_get</definition>
+        <argsstring>(ChlMatrix a, int i, int j, real *ptr)</argsstring>
+        <name>chl_matrix_get</name>
+        <param>
+          <type><ref refid="chlmatrix_8h_1abeba4a179891ef9ee1862498a9cf7737" kindref="member">ChlMatrix</ref></type>
+          <declname>a</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>i</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>j</declname>
+        </param>
+        <param>
+          <type><ref refid="chlmath_8h_1a11d147c64891830c9e79b3315b1b2e21" kindref="member">real</ref> *</type>
+          <declname>ptr</declname>
+        </param>
+        <briefdescription>
+<para>Gets an entry from a matrix. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>a</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>matrix </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>i</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>row of entry </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>j</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>column of entry </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>ptr</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>pointer for value of entry </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>0 if operation was a success, -1 otherwise </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="chl/chlmatrix.h" line="98" column="12" declfile="chl/chlmatrix.h" declline="98" declcolumn="12"/>
+      </memberdef>
+      <memberdef kind="function" id="chlmatrix_8h_1a8b54856ad42de4b7777a537105bcc218" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int chl_matrix_set</definition>
+        <argsstring>(ChlMatrix a, int i, int j, real value)</argsstring>
+        <name>chl_matrix_set</name>
+        <param>
+          <type><ref refid="chlmatrix_8h_1abeba4a179891ef9ee1862498a9cf7737" kindref="member">ChlMatrix</ref></type>
+          <declname>a</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>i</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>j</declname>
+        </param>
+        <param>
+          <type><ref refid="chlmath_8h_1a11d147c64891830c9e79b3315b1b2e21" kindref="member">real</ref></type>
+          <declname>value</declname>
+        </param>
+        <briefdescription>
+<para>Sets an entry in a matrix. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>a</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>matrix </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>i</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>row of entry </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>j</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>column of entry </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>value</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>value to set </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>0 if operation was a success, -1 otherwise </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="chl/chlmatrix.h" line="109" column="12" declfile="chl/chlmatrix.h" declline="109" declcolumn="12"/>
+      </memberdef>
+      <memberdef kind="function" id="chlmatrix_8h_1a0e825b13b697a385f5c68d65f3f82a4d" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int chl_matrix_rows</definition>
+        <argsstring>(ChlMatrix a)</argsstring>
+        <name>chl_matrix_rows</name>
+        <param>
+          <type><ref refid="chlmatrix_8h_1abeba4a179891ef9ee1862498a9cf7737" kindref="member">ChlMatrix</ref></type>
+          <declname>a</declname>
+        </param>
+        <briefdescription>
+<para>Returns the number of rows of a matrix. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>a</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>matrix </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>number of rows </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="chl/chlmatrix.h" line="117" column="12" declfile="chl/chlmatrix.h" declline="117" declcolumn="12"/>
+      </memberdef>
+      <memberdef kind="function" id="chlmatrix_8h_1ab21758df38543bdb9d075e55fb22c46c" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int chl_matrix_cols</definition>
+        <argsstring>(ChlMatrix a)</argsstring>
+        <name>chl_matrix_cols</name>
+        <param>
+          <type><ref refid="chlmatrix_8h_1abeba4a179891ef9ee1862498a9cf7737" kindref="member">ChlMatrix</ref></type>
+          <declname>a</declname>
+        </param>
+        <briefdescription>
+<para>Returns the number of columns of a matrix. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>a</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>matrix </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>number of columns </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="chl/chlmatrix.h" line="125" column="12" declfile="chl/chlmatrix.h" declline="125" declcolumn="12"/>
+      </memberdef>
+      <memberdef kind="function" id="chlmatrix_8h_1ab189a6637e30e32be791765da175af57" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool chl_matrix_eq</definition>
+        <argsstring>(ChlMatrix a, ChlMatrix b)</argsstring>
+        <name>chl_matrix_eq</name>
+        <param>
+          <type><ref refid="chlmatrix_8h_1abeba4a179891ef9ee1862498a9cf7737" kindref="member">ChlMatrix</ref></type>
+          <declname>a</declname>
+        </param>
+        <param>
+          <type><ref refid="chlmatrix_8h_1abeba4a179891ef9ee1862498a9cf7737" kindref="member">ChlMatrix</ref></type>
+          <declname>b</declname>
+        </param>
+        <briefdescription>
+<para>Returns <computeroutput>true</computeroutput> if <computeroutput>a</computeroutput> is equal to <computeroutput>b</computeroutput>, <computeroutput>false</computeroutput> otherwise. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>a</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>a matrix </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>b</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>another matrix </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para><computeroutput>true</computeroutput> if <computeroutput>a</computeroutput> is equal to <computeroutput>b</computeroutput>, <computeroutput>false</computeroutput> otherwise </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="chl/chlmatrix.h" line="134" column="13" declfile="chl/chlmatrix.h" declline="134" declcolumn="13"/>
+      </memberdef>
+      <memberdef kind="function" id="chlmatrix_8h_1a14a0ffd22f0663ef84c63d980b6e048d" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int chl_matrix_add</definition>
+        <argsstring>(ChlMatrix a, ChlMatrix b, ChlMatrix *c_ptr)</argsstring>
+        <name>chl_matrix_add</name>
+        <param>
+          <type><ref refid="chlmatrix_8h_1abeba4a179891ef9ee1862498a9cf7737" kindref="member">ChlMatrix</ref></type>
+          <declname>a</declname>
+        </param>
+        <param>
+          <type><ref refid="chlmatrix_8h_1abeba4a179891ef9ee1862498a9cf7737" kindref="member">ChlMatrix</ref></type>
+          <declname>b</declname>
+        </param>
+        <param>
+          <type><ref refid="chlmatrix_8h_1abeba4a179891ef9ee1862498a9cf7737" kindref="member">ChlMatrix</ref> *</type>
+          <declname>c_ptr</declname>
+        </param>
+        <briefdescription>
+<para>Adds two matrices. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Adds two matrices of equal shape and sets the result to the matrix <computeroutput>c</computeroutput>. The dimensions of <computeroutput>a</computeroutput> and <computeroutput>b</computeroutput> must be equal.</para>
+<para><computeroutput>c</computeroutput> may be <computeroutput>NULL</computeroutput>. If <computeroutput>c</computeroutput> is <computeroutput>NULL</computeroutput>, a new matrix will be created. This newly created matrix must be freed with <ref refid="chlmatrix_8h_1a387a5ae70e65a85813f6bb6372d3b071" kindref="member">chl_matrix_free()</ref> when no longer in use.</para>
+<para>If <computeroutput>c</computeroutput> is not <computeroutput>NULL</computeroutput>, <computeroutput>c</computeroutput> must have the same dimensions of <computeroutput>a</computeroutput> and <computeroutput>b</computeroutput>.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>a</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>a matrix </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>b</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>another matrix </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>c_ptr</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>pointer to sum of <computeroutput>a</computeroutput> and <computeroutput>b</computeroutput> </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>0 if operation was a success, -1 otherwise </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="chl/chlmatrix.h" line="153" column="12" declfile="chl/chlmatrix.h" declline="153" declcolumn="12"/>
+      </memberdef>
+      <memberdef kind="function" id="chlmatrix_8h_1a8f2a5cf9b1fb890abaebb558e200c9ac" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int chl_matrix_mult</definition>
+        <argsstring>(ChlMatrix a, ChlMatrix b, ChlMatrix *c_ptr)</argsstring>
+        <name>chl_matrix_mult</name>
+        <param>
+          <type><ref refid="chlmatrix_8h_1abeba4a179891ef9ee1862498a9cf7737" kindref="member">ChlMatrix</ref></type>
+          <declname>a</declname>
+        </param>
+        <param>
+          <type><ref refid="chlmatrix_8h_1abeba4a179891ef9ee1862498a9cf7737" kindref="member">ChlMatrix</ref></type>
+          <declname>b</declname>
+        </param>
+        <param>
+          <type><ref refid="chlmatrix_8h_1abeba4a179891ef9ee1862498a9cf7737" kindref="member">ChlMatrix</ref> *</type>
+          <declname>c_ptr</declname>
+        </param>
+        <briefdescription>
+<para>Multiplies two matrices. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Multiplies two matrices <computeroutput>a</computeroutput> and <computeroutput>b</computeroutput> and sets the result to the matrix <computeroutput>c</computeroutput>. The inner dimensions of <computeroutput>a</computeroutput> and <computeroutput>b</computeroutput> must be equal.</para>
+<para><computeroutput>c</computeroutput> may be <computeroutput>NULL</computeroutput>. If <computeroutput>c</computeroutput> is <computeroutput>NULL</computeroutput>, a new matrix will be created. This newly created matrix must be freed with <ref refid="chlmatrix_8h_1a387a5ae70e65a85813f6bb6372d3b071" kindref="member">chl_matrix_free()</ref> when no longer in use.</para>
+<para>If <computeroutput>c</computeroutput> is not <computeroutput>NULL</computeroutput>, <computeroutput>c</computeroutput> must have dimensions equal to the outer dimensions of <computeroutput>a</computeroutput> and <computeroutput>b</computeroutput>.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>a</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>left matrix </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>b</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>right matrix </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>c_ptr</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>pointer to product of <computeroutput>a</computeroutput> and <computeroutput>b</computeroutput> </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>0 if operation was a success, -1 otherwise </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="chl/chlmatrix.h" line="173" column="12" declfile="chl/chlmatrix.h" declline="173" declcolumn="12"/>
+      </memberdef>
+      <memberdef kind="function" id="chlmatrix_8h_1a26271df640ea983a8e112a708c2327bc" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int chl_matrix_scalar_mult</definition>
+        <argsstring>(ChlMatrix a, real c, ChlMatrix *b_ptr)</argsstring>
+        <name>chl_matrix_scalar_mult</name>
+        <param>
+          <type><ref refid="chlmatrix_8h_1abeba4a179891ef9ee1862498a9cf7737" kindref="member">ChlMatrix</ref></type>
+          <declname>a</declname>
+        </param>
+        <param>
+          <type><ref refid="chlmath_8h_1a11d147c64891830c9e79b3315b1b2e21" kindref="member">real</ref></type>
+          <declname>c</declname>
+        </param>
+        <param>
+          <type><ref refid="chlmatrix_8h_1abeba4a179891ef9ee1862498a9cf7737" kindref="member">ChlMatrix</ref> *</type>
+          <declname>b_ptr</declname>
+        </param>
+        <briefdescription>
+<para>Multiplies a matrix by a scalar. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Multiplies a matrix <computeroutput>a</computeroutput> by a scalar <computeroutput>c</computeroutput>.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>a</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>a matrix </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>c</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>a scalar </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>b_ptr</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>pointer to product of <computeroutput>c</computeroutput> and <computeroutput>a</computeroutput> </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>0 if operation was a success, -1 otherwise </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="chl/chlmatrix.h" line="185" column="12" declfile="chl/chlmatrix.h" declline="185" declcolumn="12"/>
+      </memberdef>
+      <memberdef kind="function" id="chlmatrix_8h_1ae884a90014e3bd826f95442e08691460" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int chl_matrix_dot</definition>
+        <argsstring>(ChlMatrix a, ChlMatrix b, real *dot)</argsstring>
+        <name>chl_matrix_dot</name>
+        <param>
+          <type><ref refid="chlmatrix_8h_1abeba4a179891ef9ee1862498a9cf7737" kindref="member">ChlMatrix</ref></type>
+          <declname>a</declname>
+        </param>
+        <param>
+          <type><ref refid="chlmatrix_8h_1abeba4a179891ef9ee1862498a9cf7737" kindref="member">ChlMatrix</ref></type>
+          <declname>b</declname>
+        </param>
+        <param>
+          <type><ref refid="chlmath_8h_1a11d147c64891830c9e79b3315b1b2e21" kindref="member">real</ref> *</type>
+          <declname>dot</declname>
+        </param>
+        <briefdescription>
+<para>Returns the dot product of two vectors. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Returns the dot (scalar) product of two vectors. The outer dimensions of <computeroutput>a</computeroutput> and <computeroutput>b</computeroutput> must be 1, and the inner dimensions must be equal.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>a</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>a row vector </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>b</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>a column vector </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>dot</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>a pointer to a real value </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>0 if operation was a success, -1 otherwise </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="chl/chlmatrix.h" line="199" column="12" declfile="chl/chlmatrix.h" declline="199" declcolumn="12"/>
+      </memberdef>
+      <memberdef kind="function" id="chlmatrix_8h_1adb2fdc3debe7f62ef910ff09c7f79632" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int chl_matrix_transpose</definition>
+        <argsstring>(ChlMatrix a, ChlMatrix *a_t_ptr)</argsstring>
+        <name>chl_matrix_transpose</name>
+        <param>
+          <type><ref refid="chlmatrix_8h_1abeba4a179891ef9ee1862498a9cf7737" kindref="member">ChlMatrix</ref></type>
+          <declname>a</declname>
+        </param>
+        <param>
+          <type><ref refid="chlmatrix_8h_1abeba4a179891ef9ee1862498a9cf7737" kindref="member">ChlMatrix</ref> *</type>
+          <declname>a_t_ptr</declname>
+        </param>
+        <briefdescription>
+<para>Returns the transpose of a matrix. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>a</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>matrix </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>a_t_ptr</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>pointer to transpose of <computeroutput>a</computeroutput> </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>0 if operation was a success, -1 otherwise </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="chl/chlmatrix.h" line="208" column="12" declfile="chl/chlmatrix.h" declline="208" declcolumn="12"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>Matrix interface. </para>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"></codeline>
+<codeline lineno="6"><highlight class="preprocessor">#ifndef<sp/>__CHL_MATRIX_H__</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="7"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>__CHL_MATRIX_H__</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="8"><highlight class="normal"></highlight></codeline>
+<codeline lineno="9"><highlight class="normal"></highlight><highlight class="preprocessor">#if<sp/>!defined(__CHL_H_INSIDE__)<sp/>&amp;&amp;<sp/>!defined(CHL_COMPILATION)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="10"><highlight class="normal"></highlight><highlight class="preprocessor">#error<sp/>&quot;Only<sp/>&lt;chl.h&gt;<sp/>can<sp/>be<sp/>included<sp/>directly.&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="11"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="12"><highlight class="normal"></highlight></codeline>
+<codeline lineno="13"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;<ref refid="chlmath_8h" kindref="compound">chl/chlmath.h</ref>&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="14"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;stdbool.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="15"><highlight class="normal"></highlight></codeline>
+<codeline lineno="19" refid="chlmatrix_8h_1abeba4a179891ef9ee1862498a9cf7737" refkind="member"><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="chlmatrix_8h_1abeba4a179891ef9ee1862498a9cf7737" kindref="member">ChlMatrix</ref><sp/>*<ref refid="chlmatrix_8h_1abeba4a179891ef9ee1862498a9cf7737" kindref="member">ChlMatrix</ref>;</highlight></codeline>
+<codeline lineno="20"><highlight class="normal"></highlight></codeline>
+<codeline lineno="32"><highlight class="keyword">extern</highlight><highlight class="normal"><sp/><ref refid="chlmatrix_8h_1abeba4a179891ef9ee1862498a9cf7737" kindref="member">ChlMatrix</ref><sp/><ref refid="chlmatrix_8h_1adf10b0f895d604d81c04f6537a020bdb" kindref="member">chl_matrix_new</ref><sp/>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>n_rows,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>n_columns);</highlight></codeline>
+<codeline lineno="33"><highlight class="normal"></highlight></codeline>
+<codeline lineno="47"><highlight class="keyword">extern</highlight><highlight class="normal"><sp/><ref refid="chlmatrix_8h_1abeba4a179891ef9ee1862498a9cf7737" kindref="member">ChlMatrix</ref><sp/><ref refid="chlmatrix_8h_1a13c7610c44ac35f66b3cbd50afa77fe7" kindref="member">chl_matrix_new_from</ref><sp/>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>n_rows,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>n_columns,<sp/><ref refid="chlmath_8h_1a11d147c64891830c9e79b3315b1b2e21" kindref="member">real</ref><sp/>*entries);</highlight></codeline>
+<codeline lineno="48"><highlight class="normal"></highlight></codeline>
+<codeline lineno="60"><highlight class="keyword">extern</highlight><highlight class="normal"><sp/><ref refid="chlmatrix_8h_1abeba4a179891ef9ee1862498a9cf7737" kindref="member">ChlMatrix</ref><sp/><ref refid="chlmatrix_8h_1a3f83568008c648c8ba1256f54a97f1a6" kindref="member">chl_matrix_zeros</ref><sp/>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>n_rows,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>n_columns);</highlight></codeline>
+<codeline lineno="61"><highlight class="normal"></highlight></codeline>
+<codeline lineno="68"><highlight class="keyword">extern</highlight><highlight class="normal"><sp/><ref refid="chlmatrix_8h_1abeba4a179891ef9ee1862498a9cf7737" kindref="member">ChlMatrix</ref><sp/><ref refid="chlmatrix_8h_1a0d2018c2420ded4fd93b0c6a45aec23b" kindref="member">chl_matrix_eye</ref><sp/>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>n);</highlight></codeline>
+<codeline lineno="69"><highlight class="normal"></highlight></codeline>
+<codeline lineno="79"><highlight class="keyword">extern</highlight><highlight class="normal"><sp/><ref refid="chlmatrix_8h_1abeba4a179891ef9ee1862498a9cf7737" kindref="member">ChlMatrix</ref><sp/><ref refid="chlmatrix_8h_1a13191389e2bc7d697aef2b3a8b112a9e" kindref="member">chl_matrix_new_like</ref><sp/>(<ref refid="chlmatrix_8h_1abeba4a179891ef9ee1862498a9cf7737" kindref="member">ChlMatrix</ref><sp/>a);</highlight></codeline>
+<codeline lineno="80"><highlight class="normal"></highlight></codeline>
+<codeline lineno="87"><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="chlmatrix_8h_1a387a5ae70e65a85813f6bb6372d3b071" kindref="member">chl_matrix_free</ref><sp/>(<ref refid="chlmatrix_8h_1abeba4a179891ef9ee1862498a9cf7737" kindref="member">ChlMatrix</ref><sp/>a);</highlight></codeline>
+<codeline lineno="88"><highlight class="normal"></highlight></codeline>
+<codeline lineno="98"><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="chlmatrix_8h_1a25452587da05a61bb82d0751403a2b76" kindref="member">chl_matrix_get</ref><sp/>(<ref refid="chlmatrix_8h_1abeba4a179891ef9ee1862498a9cf7737" kindref="member">ChlMatrix</ref><sp/>a,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>i,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>j,<sp/><ref refid="chlmath_8h_1a11d147c64891830c9e79b3315b1b2e21" kindref="member">real</ref><sp/>*ptr);</highlight></codeline>
+<codeline lineno="99"><highlight class="normal"></highlight></codeline>
+<codeline lineno="109"><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="chlmatrix_8h_1a8b54856ad42de4b7777a537105bcc218" kindref="member">chl_matrix_set</ref><sp/>(<ref refid="chlmatrix_8h_1abeba4a179891ef9ee1862498a9cf7737" kindref="member">ChlMatrix</ref><sp/>a,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>i,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>j,<sp/><ref refid="chlmath_8h_1a11d147c64891830c9e79b3315b1b2e21" kindref="member">real</ref><sp/>value);</highlight></codeline>
+<codeline lineno="110"><highlight class="normal"></highlight></codeline>
+<codeline lineno="117"><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="chlmatrix_8h_1a0e825b13b697a385f5c68d65f3f82a4d" kindref="member">chl_matrix_rows</ref><sp/>(<ref refid="chlmatrix_8h_1abeba4a179891ef9ee1862498a9cf7737" kindref="member">ChlMatrix</ref><sp/>a);</highlight></codeline>
+<codeline lineno="118"><highlight class="normal"></highlight></codeline>
+<codeline lineno="125"><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="chlmatrix_8h_1ab21758df38543bdb9d075e55fb22c46c" kindref="member">chl_matrix_cols</ref><sp/>(<ref refid="chlmatrix_8h_1abeba4a179891ef9ee1862498a9cf7737" kindref="member">ChlMatrix</ref><sp/>a);</highlight></codeline>
+<codeline lineno="126"><highlight class="normal"></highlight></codeline>
+<codeline lineno="134"><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="chlmatrix_8h_1ab189a6637e30e32be791765da175af57" kindref="member">chl_matrix_eq</ref><sp/>(<ref refid="chlmatrix_8h_1abeba4a179891ef9ee1862498a9cf7737" kindref="member">ChlMatrix</ref><sp/>a,<sp/><ref refid="chlmatrix_8h_1abeba4a179891ef9ee1862498a9cf7737" kindref="member">ChlMatrix</ref><sp/>b);</highlight></codeline>
+<codeline lineno="135"><highlight class="normal"></highlight></codeline>
+<codeline lineno="153"><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="chlmatrix_8h_1a14a0ffd22f0663ef84c63d980b6e048d" kindref="member">chl_matrix_add</ref><sp/>(<ref refid="chlmatrix_8h_1abeba4a179891ef9ee1862498a9cf7737" kindref="member">ChlMatrix</ref><sp/>a,<sp/><ref refid="chlmatrix_8h_1abeba4a179891ef9ee1862498a9cf7737" kindref="member">ChlMatrix</ref><sp/>b,<sp/><ref refid="chlmatrix_8h_1abeba4a179891ef9ee1862498a9cf7737" kindref="member">ChlMatrix</ref><sp/>*c_ptr);</highlight></codeline>
+<codeline lineno="154"><highlight class="normal"></highlight></codeline>
+<codeline lineno="173"><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="chlmatrix_8h_1a8f2a5cf9b1fb890abaebb558e200c9ac" kindref="member">chl_matrix_mult</ref><sp/>(<ref refid="chlmatrix_8h_1abeba4a179891ef9ee1862498a9cf7737" kindref="member">ChlMatrix</ref><sp/>a,<sp/><ref refid="chlmatrix_8h_1abeba4a179891ef9ee1862498a9cf7737" kindref="member">ChlMatrix</ref><sp/>b,<sp/><ref refid="chlmatrix_8h_1abeba4a179891ef9ee1862498a9cf7737" kindref="member">ChlMatrix</ref><sp/>*c_ptr);</highlight></codeline>
+<codeline lineno="174"><highlight class="normal"></highlight></codeline>
+<codeline lineno="185"><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="chlmatrix_8h_1a26271df640ea983a8e112a708c2327bc" kindref="member">chl_matrix_scalar_mult</ref><sp/>(<ref refid="chlmatrix_8h_1abeba4a179891ef9ee1862498a9cf7737" kindref="member">ChlMatrix</ref><sp/>a,<sp/><ref refid="chlmath_8h_1a11d147c64891830c9e79b3315b1b2e21" kindref="member">real</ref><sp/>c,<sp/><ref refid="chlmatrix_8h_1abeba4a179891ef9ee1862498a9cf7737" kindref="member">ChlMatrix</ref><sp/>*b_ptr);</highlight></codeline>
+<codeline lineno="186"><highlight class="normal"></highlight></codeline>
+<codeline lineno="199"><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="chlmatrix_8h_1ae884a90014e3bd826f95442e08691460" kindref="member">chl_matrix_dot</ref><sp/>(<ref refid="chlmatrix_8h_1abeba4a179891ef9ee1862498a9cf7737" kindref="member">ChlMatrix</ref><sp/>a,<sp/><ref refid="chlmatrix_8h_1abeba4a179891ef9ee1862498a9cf7737" kindref="member">ChlMatrix</ref><sp/>b,<sp/><ref refid="chlmath_8h_1a11d147c64891830c9e79b3315b1b2e21" kindref="member">real</ref><sp/>*dot);</highlight></codeline>
+<codeline lineno="200"><highlight class="normal"></highlight></codeline>
+<codeline lineno="208"><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="chlmatrix_8h_1adb2fdc3debe7f62ef910ff09c7f79632" kindref="member">chl_matrix_transpose</ref><sp/>(<ref refid="chlmatrix_8h_1abeba4a179891ef9ee1862498a9cf7737" kindref="member">ChlMatrix</ref><sp/>a,<sp/><ref refid="chlmatrix_8h_1abeba4a179891ef9ee1862498a9cf7737" kindref="member">ChlMatrix</ref><sp/>*a_t_ptr);</highlight></codeline>
+<codeline lineno="209"><highlight class="normal"></highlight></codeline>
+<codeline lineno="210"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight></codeline>
+    </programlisting>
+    <location file="chl/chlmatrix.h"/>
+  </compounddef>
+</doxygen>
