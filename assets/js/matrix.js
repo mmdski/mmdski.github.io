@@ -13,6 +13,7 @@ class Matrix {
         this.n_rows = n_rows;
         this.n_columns = n_columns;
         this._matrix = _matrix_new_from(n_rows, n_columns, entries_ptr);
+        this._free_entries = false;
 
         let ptr_offset;
 
@@ -71,7 +72,11 @@ class Matrix {
      */
     free() {
         _matrix_free(this._matrix);
-        _free(this._entries);
+        delete this._matrix;
+        if (this._free_entries) {
+            _free(this._entries);
+            delete this._entries;
+        }
     }
 
     /**
@@ -112,7 +117,9 @@ class Matrix {
     static new(n_rows, n_columns) {
         // allocate memory for the matrix elements
         let entries_ptr = Matrix._alloc(n_rows, n_columns);
-        return new Matrix(n_rows, n_columns, entries_ptr);
+        let matrix = new Matrix(n_rows, n_columns, entries_ptr);
+        matrix._free_entries = true;
+        return matrix;
     }
 
     /**
