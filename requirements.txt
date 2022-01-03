@@ -1,3 +1,6 @@
-gcovr; platform_system == 'Linux'
+autopep8
+breathe==4.31.0
 meson
 ninja
+rstcheck
+Sphinx==4.3.2
