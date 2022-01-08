@@ -6,3 +6,5 @@ vendor
 
 # visual studio code
 # .vscode
+
+.DS_store
