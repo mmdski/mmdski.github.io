@@ -30,5 +30,7 @@
         "xaxis",
         "xmlschema",
         "yaxis"
-    ]
+    ],
+    "rewrap.wrappingColumn": 120,
+    "rewrap.autoWrap.enabled": true
 }
