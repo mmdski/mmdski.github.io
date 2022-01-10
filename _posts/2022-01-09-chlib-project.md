@@ -1,8 +1,8 @@
 ---
 layout: post
 title: chlib Project
+date: 2022-01-09 19:42 -0600
 ---
-
 chlib is the small library that I began to implement some matrix functionality in. The functionality was demonstrated in
 [a previous post]({% post_url 2021-12-30-basic-matrix-operations %}). The code and build files were previously hosted in
 this project repository.
