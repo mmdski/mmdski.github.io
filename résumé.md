@@ -4,17 +4,63 @@ layout: page
 published: false
 ---
 
+### Summary
+
+---
+
+Hydrologist with 10 years of experience in developing software for hydrologic applications. Wrote proposals for and
+managed multiple scientific and software development projects. Published multiple scientific and software documentation
+reports. Domain knowledge in surface-water hydrology and river hydraulics.
+
+
+### Areas of Experience
+
+Surface water hydrology and hydraulic modeling; software development using Python, Java, C#, MATLAB, C, JavaScript,
+Fortran, and C++; Git version control system; program management; project development; scientific report writing and
+presentation
+
 ### Skills
 
 ---
 
 ***Software Development***
 
-***Hydrology***
+ - Developed, tested, debugged, and maintained scientific end-user software used in modeling, prediction, and analysis
+   of hydrologic data
 
-***Project Management***
+ - Served as a lead programmer on multiple hydrologic data processing and data visualization software applications
+
+ - Led the migration of hydrologic software packages to newer technologies and more sustainable and consistent code
+   bases
+
+***Hydrology and Hydraulics***
+
+ - Experience with one- and two-dimensional hydraulic and hydrodynamic modeling software
+
+ - Developed a dynamic stage-discharge rating method
+
+ - Implemented a reservoir model using [HEC-ResSim](https://www.hec.usace.army.mil/software/hec-ressim/)
+
+***Project Management and Program Development***
+
+ - Wrote project proposals and project planning documents for new software development needs with an understanding of
+   hydrologic data collection and processing procedures
+
+ - Wrote and submitted project proposals for hydrologic studies
+
+ - Managed tasks, timelines, and budgets for hydrologic study and software development projects
+
+ - Informed management staff on status of projects during project review meetings
 
 ***Communication***
+
+ - Authored and co-authored scientific journal articles, agency reports, and presentations
+
+ - Served as an advisor and trainer for other staff in Python programming for hydrologic data processing and analysis
+
+ - Documented hydrologic software code and wrote guidance and software user manuals
+
+ - Instructed Python programming training courses
 
 ### Experience
 
@@ -53,7 +99,7 @@ ___
 
 ---
 
-#### Software
+#### Software and Software Documentation
 
 Domanski, M. M., LeRoy, J. Z., Berutti, M., & Jackson, P. R. (2021). *Fluvial Egg Drift Simulator (FluEgg) user’s manual.* US Geological Survey. [https://doi.org/10.3133/ofr20211052](https://doi.org/10.3133/ofr20211052){:target="_blank"}
 
