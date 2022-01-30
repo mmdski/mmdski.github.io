@@ -63,9 +63,19 @@ $$ Q = Q_0e^{-\frac{t}{K}} + I\left(1 - e^{-\frac{t}{K}}\right) $$
   let nSliderValues = 100;
   let midSliderValue = 50;
 
+  let nTimes = 1000;
+  let maxTime = 480;
+  let timeStep = maxTime / (nTimes + 1);
+
+  let time = [];
+
+  for (let i = 0; i < nTimes; i++) {
+      time.push(timeStep * i);
+  }
+
   // storage coefficient limits
-  let minK = 5;
-  let maxK = 100;
+  let minK = time[0];
+  let maxK = time[nTimes - 1]/2;
   let kStep = (maxK - minK) / nSliderValues;
 
   // initial flow limits
@@ -90,23 +100,24 @@ $$ Q = Q_0e^{-\frac{t}{K}} + I\left(1 - e^{-\frac{t}{K}}\right) $$
   let initialFlow = q0Values[midSliderValue];
   let inflow = inflowValues[0];
 
-  let nTimes = 1000;
-  let maxTime = 480;
-  let timeStep = maxTime / (nTimes + 1);
-
-  let flow = [];
-  let time = [];
-
-  for (let i = 0; i < nTimes; i++) {
-      time.push(timeStep * i);
-      flow.push(0);
-  }
-
-  calcFlow();
+  let flow = calcFlow(K, initialFlow, inflow, time);
 
   let TESTER = document.getElementById('tester');
   let data = [
-    {x: time, y: flow, name: 'Outflow'}
+    {x: time, y: flow, name: 'Outflow'},
+    {
+      x: [time[0]],
+      y: [initialFlow],
+      mode: 'markers',
+      marker: {size: 10},
+      name: 'Initial Flow'
+    },
+    {
+      x: [time[0], time[nTimes - 1]],
+      y: [inflow, inflow],
+      mode: 'lines',
+      name: 'Inflow'
+    }
   ];
   let layout = {width: 600, height: 500,
     margin: {b: 20, l: 50, r: 10, t: 10},
@@ -121,15 +132,21 @@ $$ Q = Q_0e^{-\frac{t}{K}} + I\left(1 - e^{-\frac{t}{K}}\right) $$
     yaxis: {range: [0, 1.01*maxQ0], title: '$Q$'}};
   Plotly.newPlot(TESTER, data, layout);
 
-  function calcFlow() {
-      for (let i = 0; i < nTimes; i++) {
-          flow[i] = initialFlow * Math.exp(-time[i]/K) + inflow * (1 - Math.exp(-time[i]/K));
-      }
+  function calcFlow(K, initialFlow, inflow, time) {
+    let flow = [];
+    for (let i = 0; i < nTimes; i++) {
+        flow.push(initialFlow * Math.exp(-time[i]/K) + inflow * (1 - Math.exp(-time[i]/K)));
+    }
+    return flow;
   }
 
   function updatePlot() {
-    calcFlow();
-    Plotly.redraw(TESTER);
+    let flow = calcFlow(K, initialFlow, inflow, time);
+    let flow_update = {
+      x: [time, [time[0]], [time[0], time[nTimes - 1]]],
+      y: [flow, [initialFlow], [inflow, inflow]]
+    };
+    Plotly.restyle(TESTER, flow_update);
   }
 
   let kHandle = $( "#kHandle" );
@@ -137,12 +154,8 @@ $$ Q = Q_0e^{-\frac{t}{K}} + I\left(1 - e^{-\frac{t}{K}}\right) $$
     min: 0,
     max: nSliderValues,
     value: midSliderValue,
-    create: function() {
-      kHandle.text(K.toPrecision(3));
-    },
     slide: function(event, ui) {
       K = kValues[ui.value];
-      kHandle.text(K.toPrecision(3));
       updatePlot();
     }
   });
@@ -152,12 +165,8 @@ $$ Q = Q_0e^{-\frac{t}{K}} + I\left(1 - e^{-\frac{t}{K}}\right) $$
     min: 0,
     max: nSliderValues,
     value: midSliderValue,
-    create: function() {
-      q0Handle.text(initialFlow.toPrecision(3));
-    },
     slide: function(event, ui) {
       initialFlow = q0Values[ui.value];
-      q0Handle.text(initialFlow.toPrecision(3));
       updatePlot();
     }
   });
@@ -167,12 +176,8 @@ $$ Q = Q_0e^{-\frac{t}{K}} + I\left(1 - e^{-\frac{t}{K}}\right) $$
     min: 0,
     max: nSliderValues,
     value: 0,
-    create: function() {
-      inflowHandle.text(inflow.toPrecision(3));
-    },
     slide: function(event, ui) {
       inflow = inflowValues[ui.value];
-      inflowHandle.text(inflow.toPrecision(3));
       updatePlot();
     }
   });
