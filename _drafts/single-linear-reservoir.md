@@ -11,9 +11,15 @@ title: Single Linear Reservoir
     grid-gap: 20px;
   }
   .slr-horizontal-slider {
-    width: 600px;
+    width: 550px;
+    grid-column: 2;
+    grid-row: 3;
+    justify-self: center;
+  }
+  .k-value {
     grid-column: 2;
     grid-row: 2;
+    justify-self: center;
   }
   .initial-flow-slider {
     height: 465px;
@@ -32,6 +38,8 @@ title: Single Linear Reservoir
     width: 600px;
     grid-column: 2;
     grid-row: 1;
+    align-self: center;
+    justify-self: end;
   }
 </style>
 
@@ -54,6 +62,7 @@ $$ Q = Q_0e^{-\frac{t}{K}} + I\left(1 - e^{-\frac{t}{K}}\right) $$
   <div id="q0Slider" class="initial-flow-slider"></div>
   <div id="tester" class="plot-area"></div>
   <div id="inflowSlider" class="inflow-slider"></div>
+  <div id="k-value" class="k-value"></div>
   <div id="kSlider" class="slr-horizontal-slider"></div>
 </div>
 
@@ -75,7 +84,7 @@ $$ Q = Q_0e^{-\frac{t}{K}} + I\left(1 - e^{-\frac{t}{K}}\right) $$
 
   // storage coefficient limits
   let minK = time[0];
-  let maxK = time[nTimes - 1]/2;
+  let maxK = time[nTimes - 1];
   let kStep = (maxK - minK) / nSliderValues;
 
   // initial flow limits
@@ -132,6 +141,9 @@ $$ Q = Q_0e^{-\frac{t}{K}} + I\left(1 - e^{-\frac{t}{K}}\right) $$
     yaxis: {range: [0, 1.01*maxQ0], title: '$Q$'}};
   Plotly.newPlot(TESTER, data, layout);
 
+  let kValue = document.getElementById("k-value");
+  kValue.textContent = "K = " + K.toPrecision(3);
+
   function calcFlow(K, initialFlow, inflow, time) {
     let flow = [];
     for (let i = 0; i < nTimes; i++) {
@@ -156,6 +168,7 @@ $$ Q = Q_0e^{-\frac{t}{K}} + I\left(1 - e^{-\frac{t}{K}}\right) $$
     value: midSliderValue,
     slide: function(event, ui) {
       K = kValues[ui.value];
+      kValue.textContent = "K = " + K.toPrecision(3);
       updatePlot();
     }
   });
