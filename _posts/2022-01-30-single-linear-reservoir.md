@@ -1,8 +1,8 @@
 ---
 layout: post
 title: Single Linear Reservoir
+date: 2022-01-30 11:51 -0600
 ---
-
 <script type="text/javascript" src="https://cdn.plot.ly/plotly-2.6.3.min.js"></script>
 
 <style>
