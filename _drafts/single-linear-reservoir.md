@@ -39,24 +39,39 @@ title: Single Linear Reservoir
     grid-column: 2;
     grid-row: 1;
     align-self: center;
-    justify-self: end;
+    justify-self: center;
   }
 </style>
 
+When I took a surface hydrology course, the linear reservoir concept was introduced as a simple
+[runoff model](https://en.wikipedia.org/wiki/Runoff_model_(reservoir)){:target="_blank"} for a watershed. A linear
+reservoir is a reservoir with a storage $S$ that is
+[directly proportional](https://en.wikipedia.org/wiki/Proportionality_(mathematics)#Direct_proportionality){:target="_blank"}
+to the reservoir outflow $Q$,
 
-$$ \frac{dS}{dt} = I - Q $$
+$$ S = KQ. $$
 
-$$ S = KQ $$
+$S$ has the dimension of volume ($L^3$) and $Q$ has the dimension of volume per unit time ($L^3T^{-1}$). The
+proportionality constant $K$ is known as the storage coefficient[^1] and has the dimension of time ($T$). This
+relation can be combined with the continuity equation,
 
-$$ K\frac{dQ}{dt} = I - Q $$
+$$ \frac{dS}{dt} = I - Q, $$
 
-[First order linear ordinary differential equation](https://en.wikipedia.org/wiki/Integrating_factor#Solving_first_order_linear_ordinary_differential_equations){:target="_blank"}
+where $I$ is the reservoir inflow, to obtain a first order linear ordinary differential equation (ODE),
 
-$$ \frac{dQ}{dt} + \frac{1}{K}Q = \frac{1}{K}I $$
+$$ \frac{dQ}{dt} + \frac{1}{K}Q = \frac{1}{K}I. $$
 
-$$ Q = e^{-\frac{t}{K}} \frac{1}{K} \int I e^{\frac{t}{K}} dt + C e^{-\frac{t}{K}} $$
+This ODE can be solved using an [integration factor](https://en.wikipedia.org/wiki/Integrating_factor#Solving_first_order_linear_ordinary_differential_equations){:target="_blank"},
 
-$$ Q = Q_0e^{-\frac{t}{K}} + I\left(1 - e^{-\frac{t}{K}}\right) $$
+$$ Q\left(t\right) = e^{-\int\frac{1}{K} dt} \frac{1}{K} \int I e^{\int \frac{1}{K} dt} dt + C e^{-\frac{t}{K}}. $$
+
+Setting $Q\left(0\right) = Q_0$ and requiring $I$ to be constant through time yields
+
+$$ Q\left(t\right) = Q_0e^{-\frac{t}{K}} + I\left(1 - e^{-\frac{t}{K}}\right). $$
+
+The solution to this equation is shown in the figure below. You can adjust the parameters to the solution by using the
+slider bars to the left, right, and below the figure. The left slider modifies the initial inflow $Q_0$, the right
+slider modifies the reservoir inflow $I$, and the slider below the figure modifies the storage coefficient $K$.
 
 <div class="container">
   <div id="q0Slider" class="initial-flow-slider"></div>
@@ -65,12 +80,12 @@ $$ Q = Q_0e^{-\frac{t}{K}} + I\left(1 - e^{-\frac{t}{K}}\right) $$
   <div id="k-value" class="k-value"></div>
   <div id="kSlider" class="slr-horizontal-slider"></div>
 </div>
+<br>
+
+[^1]: Pedersen, J. T., Peters, J. C., & Helweg, O. J. (1980). Hydrographs by Single Linear Reservoir Model. Hydrologic Engineering Center Davis, CA. [https://www.hec.usace.army.mil/publications/TechnicalPapers/TP-74.pdf](https://www.hec.usace.army.mil/publications/TechnicalPapers/TP-74.pdf){:target="_blank"}
 
 <script type="text/javascript">
   "use strict";
-
-  let nSliderValues = 100;
-  let midSliderValue = 50;
 
   let nTimes = 1000;
   let maxTime = 480;
@@ -82,38 +97,44 @@ $$ Q = Q_0e^{-\frac{t}{K}} + I\left(1 - e^{-\frac{t}{K}}\right) $$
       time.push(timeStep * i);
   }
 
+  let nSliderValues = 100;
+  let midSliderValue = 50;
+
   // storage coefficient limits
-  let minK = time[0];
-  let maxK = time[nTimes - 1];
-  let kStep = (maxK - minK) / nSliderValues;
+  let minK = 1;
+  let maxK = time[nTimes - 1]/2;
 
   // initial flow limits
   let minQ0 = 0;
   let maxQ0 = 100;
-  let q0Step = (maxQ0 - minQ0) / nSliderValues;
 
   // inflow limits
   let minInflow = 0;
   let maxInflow = maxQ0;
-  let inflowStep = (maxInflow - minInflow) / nSliderValues;
 
   let kValues = [];
   let q0Values = [];
   let inflowValues = [];
-  for (let i = 0; i <= nSliderValues; i++) {
-      kValues.push(minK + i * kStep);
-      q0Values.push(minQ0 + i * q0Step);
-      inflowValues.push(minInflow + i * inflowStep);
+  let frac = 0;
+  for (let i = 0; i < nSliderValues; i++) {
+      frac = i/(nSliderValues - 1);
+      kValues.push(minK + frac * maxK);
+      q0Values.push(minQ0 + frac * maxQ0);
+      inflowValues.push(minInflow + frac * maxInflow);
   }
   let K = kValues[midSliderValue];
-  let initialFlow = q0Values[midSliderValue];
+  let initialFlow = q0Values[nSliderValues - 1];
   let inflow = inflowValues[0];
 
   let flow = calcFlow(K, initialFlow, inflow, time);
 
   let TESTER = document.getElementById('tester');
   let data = [
-    {x: time, y: flow, name: 'Outflow'},
+    {
+      x: time,
+      y: flow,
+      name: 'Outflow'
+    },
     {
       x: [time[0]],
       y: [initialFlow],
@@ -164,7 +185,7 @@ $$ Q = Q_0e^{-\frac{t}{K}} + I\left(1 - e^{-\frac{t}{K}}\right) $$
   let kHandle = $( "#kHandle" );
   $( "#kSlider" ).slider({
     min: 0,
-    max: nSliderValues,
+    max: nSliderValues - 1,
     value: midSliderValue,
     slide: function(event, ui) {
       K = kValues[ui.value];
@@ -176,8 +197,8 @@ $$ Q = Q_0e^{-\frac{t}{K}} + I\left(1 - e^{-\frac{t}{K}}\right) $$
   $( "#q0Slider" ).slider({
     orientation: "vertical",
     min: 0,
-    max: nSliderValues,
-    value: midSliderValue,
+    max: nSliderValues - 1,
+    value: nSliderValues - 1,
     slide: function(event, ui) {
       initialFlow = q0Values[ui.value];
       updatePlot();
@@ -187,7 +208,7 @@ $$ Q = Q_0e^{-\frac{t}{K}} + I\left(1 - e^{-\frac{t}{K}}\right) $$
   $( "#inflowSlider" ).slider({
     orientation: "vertical",
     min: 0,
-    max: nSliderValues,
+    max: nSliderValues - 1,
     value: 0,
     slide: function(event, ui) {
       inflow = inflowValues[ui.value];
