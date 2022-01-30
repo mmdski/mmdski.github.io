@@ -6,18 +6,33 @@ title: Single Linear Reservoir
 <script type="text/javascript" src="https://cdn.plot.ly/plotly-2.6.3.min.js"></script>
 
 <style>
-.slr-slider {
-  width: 600px;
-}
-.ui-slider-handle.slr-handle {
-  width: 5em;
-  height: 1.6em;
-  top: 50%;
-  margin-top: -.8em;
-  margin-left: -2.5em;
-  text-align: center;
-  line-height: 1.6em;
-}
+  .container {
+    display: grid;
+    grid-gap: 20px;
+  }
+  .slr-horizontal-slider {
+    width: 600px;
+    grid-column: 2;
+    grid-row: 2;
+  }
+  .initial-flow-slider {
+    height: 465px;
+    grid-column: 1;
+    grid-row: 1;
+    align-self: center;
+  }
+  .inflow-slider {
+    height: 465px;
+    grid-column: 3;
+    grid-row: 1;
+    align-self: center;
+  }
+  .plot-area {
+    height: 500px;
+    width: 600px;
+    grid-column: 2;
+    grid-row: 1;
+  }
 </style>
 
 
@@ -35,21 +50,11 @@ $$ Q = e^{-\frac{t}{K}} \frac{1}{K} \int I e^{\frac{t}{K}} dt + C e^{-\frac{t}{K
 
 $$ Q = Q_0e^{-\frac{t}{K}} + I\left(1 - e^{-\frac{t}{K}}\right) $$
 
-<div id="tester" style="width:600px;height:500px;"></div>
-<br>
-Storage coefficient ($K$)
-<div id="kSlider" class="slr-slider">
-  <div id="kHandle" class="ui-slider-handle slr-handle"></div>
-</div>
-<br>
-Initial flow ($Q_0$)
-<div id="q0Slider" class="slr-slider">
-  <div id="q0Handle" class="ui-slider-handle slr-handle"></div>
-</div>
-<br>
-Inflow ($I$)
-<div id="inflowSlider" class="slr-slider">
-  <div id="inflowHandle" class="ui-slider-handle slr-handle"></div>
+<div class="container">
+  <div id="q0Slider" class="initial-flow-slider"></div>
+  <div id="tester" class="plot-area"></div>
+  <div id="inflowSlider" class="inflow-slider"></div>
+  <div id="kSlider" class="slr-horizontal-slider"></div>
 </div>
 
 <script type="text/javascript">
@@ -60,7 +65,7 @@ Inflow ($I$)
 
   // storage coefficient limits
   let minK = 5;
-  let maxK = 65;
+  let maxK = 100;
   let kStep = (maxK - minK) / nSliderValues;
 
   // initial flow limits
@@ -100,9 +105,17 @@ Inflow ($I$)
   calcFlow();
 
   let TESTER = document.getElementById('tester');
-  let data = [{x: time, y: flow}];
+  let data = [
+    {x: time, y: flow, name: 'Outflow'}
+  ];
   let layout = {width: 600, height: 500,
     margin: {b: 20, l: 50, r: 10, t: 10},
+    legend: { x: 1,
+      xanchor: 'right',
+      y: 1,
+      bgcolor: '#FFFFFF',
+      bordercolor: '#000000',
+      borderwidth: 1},
     dragmode: false,
     xaxis: {range: [0, maxTime], title: '$t$'},
     yaxis: {range: [0, 1.01*maxQ0], title: '$Q$'}};
@@ -116,8 +129,7 @@ Inflow ($I$)
 
   function updatePlot() {
     calcFlow();
-    let data_update = [{x: time, y: flow}];
-    Plotly.redraw(TESTER, data_update);
+    Plotly.redraw(TESTER);
   }
 
   let kHandle = $( "#kHandle" );
@@ -136,6 +148,7 @@ Inflow ($I$)
   });
   let q0Handle = $( "#q0Handle" );
   $( "#q0Slider" ).slider({
+    orientation: "vertical",
     min: 0,
     max: nSliderValues,
     value: midSliderValue,
@@ -150,6 +163,7 @@ Inflow ($I$)
   });
   let inflowHandle = $( "#inflowHandle" );
   $( "#inflowSlider" ).slider({
+    orientation: "vertical",
     min: 0,
     max: nSliderValues,
     value: 0,
