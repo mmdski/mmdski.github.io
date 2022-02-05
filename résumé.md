@@ -1,22 +1,23 @@
 ---
 title: Résumé
 layout: page
-published: false
+published: true
 ---
 
 ### Summary
 
 ---
 
-Hydrologist with 10 years of experience in developing software for hydrologic applications. Wrote proposals for and
+Hydrologist with over 10 years of experience in developing software for hydrologic applications. Wrote proposals for and
 managed multiple scientific and software development projects. Published multiple scientific and software documentation
-reports. Domain knowledge in surface-water hydrology and river hydraulics.
+reports. Domain knowledge in [surface-water hydrology](https://en.wikipedia.org/wiki/Surface-water_hydrology){:target="_blank"} and
+[open-channel flow](https://en.wikipedia.org/wiki/Open-channel_flow){:target="_blank"}.
 
 
 ### Areas of Experience
 
-Surface water hydrology and hydraulic modeling; software development using Python, Java, C#, MATLAB, C, JavaScript,
-Fortran, and C++; Git version control system; program management; project development; scientific report writing and
+Surface-water hydrology and hydraulic modeling; software development using Python, Java, C#, MATLAB, C, JavaScript,
+and Fortran; Git version control system; program management; project development; scientific report writing and
 presentation
 
 ### Skills
@@ -37,16 +38,11 @@ presentation
 
  - Experience with one- and two-dimensional hydraulic and hydrodynamic modeling software
 
- - Developed a dynamic stage-discharge rating method
-
- - Implemented a reservoir model using [HEC-ResSim](https://www.hec.usace.army.mil/software/hec-ressim/)
+ - Led hydrologic investigations
 
 ***Project Management and Program Development***
 
- - Wrote project proposals and project planning documents for new software development needs with an understanding of
-   hydrologic data collection and processing procedures
-
- - Wrote and submitted project proposals for hydrologic studies
+ - Wrote project proposals and project planning documents for hydrologic studies and software development projects
 
  - Managed tasks, timelines, and budgets for hydrologic study and software development projects
 
@@ -56,13 +52,12 @@ presentation
 
  - Authored and co-authored scientific journal articles, agency reports, and presentations
 
- - Served as an advisor and trainer for other staff in Python programming for hydrologic data processing and analysis
+ - Advised and trained other staff in Python programming for hydrologic data processing and analysis
 
- - Documented hydrologic software code and wrote guidance and software user manuals
+ - Wrote developer documentation and user manuals for hydrologic software
 
- - Instructed Python programming training courses
 
-### Experience
+### Professional History
 
 ---
 
@@ -83,11 +78,15 @@ presentation
 
 ___
 
-#### University of Illinois at Urbana-Champaign
+#### [University of Illinois at Urbana-Champaign](https://cee.illinois.edu){:target="_blank"}
 
 ***Master of Science in Civil Engineering***
 
 ***Bachelor of Science in Civil Engineering***, *with Highest Honors*
+
+#### [Rock Valley College](https://www.rockvalleycollege.edu){:target="_blank"} | Rockford, Illinois
+
+Coursework, no degree
 
 <!--
 ### Professional Licenses
@@ -95,7 +94,7 @@ ___
 ***Registered Professional Engineer*** -->
 
 ### Publications
-![ORCID iD icon](https://info.orcid.org/wp-content/uploads/2019/11/orcid_16x16.png)[https://orcid.org/0000-0002-0468-314X](https://orcid.org/0000-0002-0468-314X)
+![ORCID iD icon](https://info.orcid.org/wp-content/uploads/2019/11/orcid_16x16.png)[https://orcid.org/0000-0002-0468-314X](https://orcid.org/0000-0002-0468-314X){:target="_blank"}
 
 ---
 
