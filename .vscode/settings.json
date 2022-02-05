@@ -27,6 +27,7 @@
         "plotsin",
         "Trefethen",
         "Valgrind",
+        "webrick",
         "xaxis",
         "xmlschema",
         "yaxis"

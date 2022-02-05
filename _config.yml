@@ -73,3 +73,7 @@ exclude:
   - requirements.txt
   - script/
   - wasm32.ini
+
+webrick:
+  headers:
+    Access-Control-Allow-Origin: "*"
