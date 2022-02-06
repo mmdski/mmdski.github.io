@@ -1,8 +1,32 @@
 ---
 layout: post
 title: Single Linear Reservoir (Part 2)
+tags: ["linear reservoir", "single linear reservoir", "ode"]
 ---
 <script type="text/javascript" src="https://cdn.plot.ly/plotly-2.6.3.min.js"></script>
+
+I've [briefly discussed]({% post_url 2022-01-30-single-linear-reservoir %}) the single linear reservoir model for
+runoff, but the information I presented wasn't the most useful for developing a runoff hydrograph since reservoir inflow
+$I$ was constant over the time period shown in the plot.
+
+If the initial time of a time period is $t_0$, the time inflow starts is $t_1$, and the time inflow stops is $t_2$, and
+$Q_0=Q\left(t_0\right)$, $Q_1=Q\left(t_1\right)$, and $Q_2=Q\left(t_2\right)$, then the equation for outflow is
+
+$$ Q\left(t\right) = \begin{cases}
+    Q_0e^{-\frac{t}{K}}& \text{if $t \le t_1$},\\
+    Q_1e^{-\frac{t - t_1}{K}} + I\left(1 - e^{-\frac{t - t_1}{K}}\right)& \text{if $t_1 < t \le t_2$},\\
+    Q_2e^{-\frac{t - t_2}{K}}& \text{if $t_2 < t.$}
+\end{cases}$$
+
+The plot below has an adjustable period of inflow. The range slider below the storage coefficient ($K$) slider adjusts
+the period. The time period between the slider handles is the inflow time period. The left slider sets $t_1$ and the
+right slider sets $t_2$. The sliders begin so that $t_1=t_0$.
+
+The other sliders are the same as in the previous post. The left slider modifies the initial inflow $Q_0$, the right
+slider modifies the reservoir inflow $I$, and the slider below the figure modifies the storage coefficient $K$.
+
+This is starting to look more like a [hydrograph](https://en.wikipedia.org/wiki/Hydrograph){:target="_blank"}, but
+there's still room for improvement.
 
 <style>
   .container {
@@ -98,7 +122,7 @@ title: Single Linear Reservoir (Part 2)
   }
   let K = kValues[midSliderValue];
   let initialFlow = q0Values[0];
-  let inflowValue = inflowValues[midSliderValue];
+  let inflowValue = inflowValues[Math.trunc(2/3*nSliderValues)];
 
   let t1 = time[0];
   let t2 = time[nTimes/2];
@@ -220,7 +244,7 @@ title: Single Linear Reservoir (Part 2)
     orientation: "vertical",
     min: 0,
     max: nSliderValues - 1,
-    value: midSliderValue,
+    value: 2/3*nSliderValues,
     slide: function(event, ui) {
       inflowValue = inflowValues[ui.value];
       inflowTS = calcInflowTS();

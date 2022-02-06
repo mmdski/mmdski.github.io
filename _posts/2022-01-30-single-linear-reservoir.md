@@ -1,7 +1,8 @@
 ---
 layout: post
-title: Single Linear Reservoir
+title: Single Linear Reservoir (Part 1)
 date: 2022-01-30 11:51 -0600
+tags: ["linear reservoir", "single linear reservoir", "ode"]
 ---
 <script type="text/javascript" src="https://cdn.plot.ly/plotly-2.6.3.min.js"></script>
 
