@@ -26,6 +26,7 @@
         "Plotly",
         "plotsin",
         "Trefethen",
+        "trunc",
         "Valgrind",
         "webrick",
         "xaxis",

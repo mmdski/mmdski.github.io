@@ -71,8 +71,6 @@ title: Single Linear Reservoir (Part 2)
       time.push(timeStep * i);
   }
 
-  let t1 = time[nTimes/2];
-
   let nSliderValues = 100;
   let midSliderValue = Math.trunc(nSliderValues/2);
 
@@ -101,6 +99,9 @@ title: Single Linear Reservoir (Part 2)
   let K = kValues[midSliderValue];
   let initialFlow = q0Values[0];
   let inflowValue = inflowValues[midSliderValue];
+
+  let t1 = time[0];
+  let t2 = time[nTimes/2];
 
   let inflowTS = calcInflowTS();
   let flow = calcFlow();
@@ -145,7 +146,10 @@ title: Single Linear Reservoir (Part 2)
   function calcInflowTS() {
     let inflowTS = [];
     for (let i = 0; i < nTimes; i++) {
-      if (time[i] <= t1) {
+      if (time[i] < t1) {
+        inflowTS.push(0);
+      }
+      else if (time[i] <= t2) {
         inflowTS.push(inflowValue);
       } else {
         inflowTS.push(0);
@@ -191,11 +195,13 @@ title: Single Linear Reservoir (Part 2)
     }
   });
   $( "#t1-slider" ).slider({
+    range: true,
     min: 0,
     max: nTimes,
-    value: nTimes/2,
+    values: [0, nTimes/2],
     slide: function(event, ui) {
-      t1 = time[ui.value - 1];
+      t1 = time[ui.values[0]]
+      t2 = time[ui.values[1] - 1];
       inflowTS = calcInflowTS();
       updatePlot();
     }
