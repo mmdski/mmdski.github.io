@@ -16,6 +16,8 @@ reports. Domain knowledge in [surface-water hydrology](https://en.wikipedia.org/
 
 ### Areas of Experience
 
+---
+
 Surface-water hydrology and hydraulic modeling; software development using Python, Java, C#, MATLAB, C, JavaScript,
 and Fortran; Git version control system; program management; project development; scientific report writing and
 presentation
@@ -23,16 +25,6 @@ presentation
 ### Skills
 
 ---
-
-***Software Development***
-
- - Developed, tested, debugged, and maintained scientific end-user software used in modeling, prediction, and analysis
-   of hydrologic data
-
- - Served as a lead programmer on multiple hydrologic data processing and data visualization software applications
-
- - Led the migration of hydrologic software packages to newer technologies and more sustainable and consistent code
-   bases
 
 ***Hydrology and Hydraulics***
 
@@ -47,6 +39,16 @@ presentation
  - Managed tasks, timelines, and budgets for hydrologic study and software development projects
 
  - Informed management staff on status of projects during project review meetings
+
+***Software Development***
+
+ - Developed, tested, debugged, and maintained scientific end-user software used in modeling, prediction, and analysis
+   of hydrologic data
+
+ - Served as a lead programmer on multiple hydrologic data processing and data visualization software applications
+
+ - Led the migration of hydrologic software packages to newer technologies and more sustainable and consistent code
+   bases
 
 ***Communication***
 
@@ -84,14 +86,15 @@ ___
 
 ***Bachelor of Science in Civil Engineering***, *with Highest Honors*
 
-#### [Rock Valley College](https://www.rockvalleycollege.edu){:target="_blank"} | Rockford, Illinois
+#### [Rock Valley College](https://www.rockvalleycollege.edu){:target="_blank"}, Rockford, Illinois
 
 Coursework, no degree
 
-<!--
 ### Professional Licenses
+
 ---
-***Registered Professional Engineer*** -->
+
+***Licensed Professional Engineer***, Illinois
 
 ### Publications
 ![ORCID iD icon](https://info.orcid.org/wp-content/uploads/2019/11/orcid_16x16.png)[https://orcid.org/0000-0002-0468-314X](https://orcid.org/0000-0002-0468-314X){:target="_blank"}

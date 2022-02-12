@@ -18,7 +18,7 @@
 # You can create any custom variable you would like, and they will be accessible
 # in the templates via {{ site.myvariable }}.
 
-title: Marian Domanski
+title: Marian Domanski, PE
 author:
   name: Marian Domanski
   email: mmdski@gmail.com
