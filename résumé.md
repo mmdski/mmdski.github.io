@@ -13,7 +13,6 @@ managed multiple scientific and software development projects. Published multipl
 reports. Domain knowledge in [surface-water hydrology](https://en.wikipedia.org/wiki/Surface-water_hydrology){:target="_blank"} and
 [open-channel flow](https://en.wikipedia.org/wiki/Open-channel_flow){:target="_blank"}.
 
-
 ### Areas of Experience
 
 ---
@@ -28,36 +27,35 @@ presentation
 
 ***Hydrology and Hydraulics***
 
- - Experience with one- and two-dimensional hydraulic and hydrodynamic modeling software
+- Experience with one- and two-dimensional hydraulic and hydrodynamic modeling software
 
- - Led hydrologic investigations
+- Led hydrologic investigations
 
 ***Project Management and Program Development***
 
- - Wrote project proposals and project planning documents for hydrologic studies and software development projects
+- Wrote project proposals and project planning documents for hydrologic studies and software development projects
 
- - Managed tasks, timelines, and budgets for hydrologic study and software development projects
+- Managed tasks, timelines, and budgets for hydrologic study and software development projects
 
- - Informed management staff on status of projects during project review meetings
+- Informed management staff on status of projects during project review meetings
 
 ***Software Development***
 
- - Developed, tested, debugged, and maintained scientific end-user software used in modeling, prediction, and analysis
+- Developed, tested, debugged, and maintained scientific end-user software used in modeling, prediction, and analysis
    of hydrologic data
 
- - Served as a lead programmer on multiple hydrologic data processing and data visualization software applications
+- Served as a lead programmer on multiple hydrologic data processing and data visualization software applications
 
- - Led the migration of hydrologic software packages to newer technologies and more sustainable and consistent code
+- Led the migration of hydrologic software packages to newer technologies and more sustainable and consistent code
    bases
 
 ***Communication***
 
- - Authored and co-authored scientific journal articles, agency reports, and presentations
+- Authored and co-authored scientific journal articles, agency reports, and presentations
 
- - Advised and trained other staff in Python programming for hydrologic data processing and analysis
+- Advised and trained other staff in Python programming for hydrologic data processing and analysis
 
- - Wrote developer documentation and user manuals for hydrologic software
-
+- Wrote developer documentation and user manuals for hydrologic software
 
 ### Professional History
 
@@ -78,7 +76,7 @@ presentation
 
 ### Education
 
-___
+---
 
 #### [University of Illinois at Urbana-Champaign](https://cee.illinois.edu){:target="_blank"}
 
@@ -97,6 +95,7 @@ Coursework, no degree
 ***Licensed Professional Engineer***, Illinois
 
 ### Publications
+
 ![ORCID iD icon](https://info.orcid.org/wp-content/uploads/2019/11/orcid_16x16.png)[https://orcid.org/0000-0002-0468-314X](https://orcid.org/0000-0002-0468-314X){:target="_blank"}
 
 ---
