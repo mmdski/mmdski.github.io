@@ -62,17 +62,10 @@ plugins:
 #   - vendor/ruby/
 exclude:
   - build/
-  - build.float/
-  - build.mem/
-  - build.wasm32/
-  - builddir/
-  - chlib/
-  - meson.build
-  - meson_options.txt
+  - CMakeLists.txt
   - README.md
-  - requirements.txt
   - script/
-  - wasm32.ini
+  - src/
 
 webrick:
   headers:

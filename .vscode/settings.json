@@ -34,5 +34,8 @@
         "yaxis"
     ],
     "rewrap.wrappingColumn": 120,
-    "rewrap.autoWrap.enabled": true
+    "rewrap.autoWrap.enabled": true,
+    "cmake.emscriptenSearchDirs": [
+        "/opt/homebrew/bin"
+    ]
 }
