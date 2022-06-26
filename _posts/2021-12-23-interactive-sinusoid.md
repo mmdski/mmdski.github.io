@@ -22,10 +22,6 @@ date: 2021-12-23 13:38 -0600
 }
 </style>
 
-_edit: 2021-12-30_<br>
-I've removed the sine function from the repository. The function can be found in this source file:
-[chlsin.c](https://github.com/mmdski/mmdski.github.io/blob/0aa35e8143b0d53eb29cd85d7ff79b5e6ac0bd9b/chl/src/chlsin.c#L26){:target="_blank"}.
-
 ## Interactive example
 
 Generally, a [sine wave](https://en.wikipedia.org/wiki/Sine_wave){:target="_blank"} as a function of time is
@@ -94,14 +90,14 @@ Phase ($\phi$)
 
     for (let i = 0; i <= nSliderValues; i++) {
       // make sure mid point is represented accurately
-      freq.push((i - midSliderValue)/nSliderValues * (freqMax - freqMin) + freqMid);
-      phase.push((i - midSliderValue)/nSliderValues * (phaseMax - phaseMin));
+      freq.push((i - midSliderValue)/nSliderValues *(freqMax - freqMin) + freqMid);
+phase.push((i - midSliderValue)/nSliderValues* (phaseMax - phaseMin));
     }
 
     // allocate memory for x
     let x_ptr = _calloc(size, Float32Array.BYTES_PER_ELEMENT);
 
-    _chl_sin_func(size, t_ptr, x_ptr, amplitude, freq[freqIndex], phase[phaseIndex]);
+    _mmdski_sinf_func(size, t_ptr, x_ptr, amplitude, freq[freqIndex], phase[phaseIndex]);
 
     // create a buffer from x on the heap
     let x = new Float32Array(HEAPF32.buffer, x_ptr, size);
@@ -116,7 +112,7 @@ Phase ($\phi$)
     Plotly.newPlot(TESTER, data, layout);
 
     function updatePlot() {
-      _chl_sin_func(size, t_ptr, x_ptr, amplitude, freq[freqIndex], phase[phaseIndex]);
+      _mmdski_sinf_func(size, t_ptr, x_ptr, amplitude, freq[freqIndex], phase[phaseIndex]);
       let data_update = [{x: t, y: x}];
       Plotly.redraw(TESTER, data_update);
     }
@@ -169,6 +165,7 @@ Phase ($\phi$)
 </script>
 
 ## Explanation
+
 I created this example because I wanted to learn how to work with a graph that changes with user inputs. I'm not
 completely satisfied with the results, but I consider it a good start. The code could use some cleaning up at the very
 least.
@@ -176,4 +173,4 @@ least.
 The computation of the sine function is done in Wasm compiled with Emscripten, the plotting is done in Plotly, and the
 slider bars come from [JQuery UI](https://jqueryui.com/){:target="_blank"}. I plan on working more with these libraries in the future, but
 I'd like to add a library like [Bootstrap](https://getbootstrap.com/){:target="_blank"} to help with layout.
-<script type="text/javascript" src="{{ base.url | prepend: site.url }}/assets/js/chlsin.js"></script>
+<script type="text/javascript" src="{{ base.url | prepend: site.url }}/assets/js/mmdski.js"></script>

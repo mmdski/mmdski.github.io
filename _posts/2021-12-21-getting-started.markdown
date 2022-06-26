@@ -49,7 +49,7 @@ code was compiled to Wasm using [Emscripten](https://emscripten.org/). The plot 
         let x_ptr = _calloc(size, Float32Array.BYTES_PER_ELEMENT);
 
         // compute the sin of t and store it in x
-        _chl_sin_array(size, t_ptr, x_ptr);
+        _mmdski_sinf_array(size, t_ptr, x_ptr);
 
         // create a buffer from x on the heap
         let x = new Float32Array(HEAPF32.buffer, x_ptr, size);
@@ -68,4 +68,4 @@ code was compiled to Wasm using [Emscripten](https://emscripten.org/). The plot 
 
 </script>
 <script type="text/javascript" src="https://cdn.plot.ly/plotly-2.6.3.min.js"></script>
-<script type="text/javascript" src="{{ base.url | prepend: site.url }}/assets/js/chlsin.js"></script>
+<script type="text/javascript" src="{{ base.url | prepend: site.url }}/assets/js/mmdski.js"></script>
