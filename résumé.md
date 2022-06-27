@@ -8,36 +8,22 @@ published: true
 
 ---
 
-Hydrologist with over 10 years of experience in developing software for hydrologic applications. Wrote proposals for and
-managed multiple scientific and software development projects. Published multiple scientific and software documentation
-reports. Domain knowledge in [surface-water hydrology](https://en.wikipedia.org/wiki/Surface-water_hydrology){:target="_blank"} and
+Software engineer with over 10 years of experience in developing software for hydrologic applications. Wrote proposals
+for and managed multiple scientific and software development projects. Published multiple scientific and software
+documentation reports. Domain knowledge in [surface-water
+hydrology](https://en.wikipedia.org/wiki/Surface-water_hydrology){:target="_blank"} and
 [open-channel flow](https://en.wikipedia.org/wiki/Open-channel_flow){:target="_blank"}.
 
 ### Areas of Experience
 
 ---
 
-Surface-water hydrology and hydraulic modeling; software development using Python, Java, C#, MATLAB, C, JavaScript,
-and Fortran; Git version control system; program management; project development; scientific report writing and
-presentation
+Software development using Python, Java, C#, MATLAB, C, JavaScript, and Fortran; Git version control system; program
+management; project development; scientific report writing and presentation
 
 ### Skills
 
 ---
-
-***Hydrology and Hydraulics***
-
-- Experience with one- and two-dimensional hydraulic and hydrodynamic modeling software
-
-- Led hydrologic investigations
-
-***Project Management and Program Development***
-
-- Wrote project proposals and project planning documents for hydrologic studies and software development projects
-
-- Managed tasks, timelines, and budgets for hydrologic study and software development projects
-
-- Informed management staff on status of projects during project review meetings
 
 ***Software Development***
 
@@ -49,6 +35,14 @@ presentation
 - Led the migration of hydrologic software packages to newer technologies and more sustainable and consistent code
    bases
 
+***Project Management and Program Development***
+
+- Wrote project proposals and project planning documents for hydrologic studies and software development projects
+
+- Managed tasks, timelines, and budgets for hydrologic study and software development projects
+
+- Informed management staff on status of projects during project review meetings
+
 ***Communication***
 
 - Authored and co-authored scientific journal articles, agency reports, and presentations
@@ -57,14 +51,25 @@ presentation
 
 - Wrote developer documentation and user manuals for hydrologic software
 
+***Hydrology and Hydraulics***
+
+- Experience with one- and two-dimensional hydraulic and hydrodynamic modeling software
+
+- Led hydrologic investigations
+
 ### Professional History
 
 ---
 
-#### US Geological Survey
+#### [Applied Research Institute, University of Illinois at Urbana-Champaign](https://appliedresearch.illinois.edu){:target="_blank"}
+
+***Staff Software Engineer***
+*(June 2022 - Present)*
+
+#### [US Geological Survey](https://www.usgs.gov/centers/cm-water){:target="_blank"}
 
 ***Hydrologist***
-*(December 2013 - Present)*
+*(December 2013 - June 2022)*
 
 ***Student Trainee (Hydrology)***
 *(January 2011 - December 2013)*
